@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="101.82mm"
+   height="101.82mm"
+   version="1.1"
+   viewBox="0 0 101.82 101.82"
+   id="svg8"
+   sodipodi:docname="circulo_carga_4.svg"
+   inkscape:version="1.4.2 (ebf0e94, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="1.2836787"
+     inkscape:cx="192.02624"
+     inkscape:cy="192.41575"
+     inkscape:window-width="1440"
+     inkscape:window-height="697"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <g
+     transform="matrix(-1,0,0,1,106.1486,-4.9375)"
+     fill="#a379baff"
+     stroke-width="0.26458"
+     stroke="#fff"
+     id="g8">
+    <circle
+       cx="55.240002"
+       cy="15.034"
+       r="10.097"
+       id="circle1" />
+    <circle
+       transform="rotate(45)"
+       cx="78.550003"
+       cy="-40.382999"
+       r="10.097"
+       fill-opacity="0.87"
+       id="circle2" />
+    <circle
+       transform="rotate(90)"
+       cx="55.846001"
+       cy="-96.052002"
+       r="10.097"
+       fill-opacity="0.75"
+       id="circle3" />
+    <circle
+       transform="rotate(135)"
+       cx="0.42857999"
+       cy="-119.36"
+       r="10.097"
+       fill-opacity="0.62"
+       id="circle4" />
+    <circle
+       transform="scale(-1)"
+       cx="-55.240002"
+       cy="-96.657997"
+       r="10.097"
+       fill-opacity="0.5"
+       id="circle5" />
+    <circle
+       transform="rotate(-135)"
+       cx="-78.550003"
+       cy="-41.240002"
+       r="10.097"
+       fill-opacity="0.37"
+       id="circle6" />
+    <circle
+       transform="rotate(-90)"
+       cx="-55.846001"
+       cy="14.428"
+       r="10.097"
+       fill-opacity="0.25"
+       id="circle7" />
+    <circle
+       transform="rotate(-45)"
+       cx="-0.42857999"
+       cy="37.737999"
+       r="10.097"
+       fill-opacity="0.12"
+       id="circle8" />
+  </g>
+  <animateTransform
+     attributeName="transform"
+     begin="0s"
+     dur="2s"
+     type="rotate"
+     from="0 0 0"
+     to="366 0 0"
+     repeatCount="indefinite" />
+</svg>

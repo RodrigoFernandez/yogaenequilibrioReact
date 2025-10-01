@@ -5,7 +5,6 @@ function LogoEncabezado({linkHome, logo}){
                     <img src={logo} alt="logo"></img>
                 </a>
             </div>;
-
 }
 
 function TituloEncabezado({children, titulo}){
