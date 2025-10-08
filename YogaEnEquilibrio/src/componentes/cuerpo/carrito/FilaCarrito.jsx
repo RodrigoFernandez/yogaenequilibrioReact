@@ -1,15 +1,13 @@
 import { useState } from "react";
 
-export const FilaCarrito = ({item, actualizarTotal, eliminarItem}) => {
+export const FilaCarrito = ({item, carrito, setCarrito, eliminarItem}) => {
     const [itemFila, setItemFila] = useState(item);
 
     const actualizarCantidad = (e) => {
         const nuevaCantidad = parseInt(e.target.value);
         if (nuevaCantidad >= 1 && nuevaCantidad <= 10) {
-            let aux = itemFila;
-            aux.cantidad = nuevaCantidad;
-            setItemFila(aux);
-            actualizarTotal();
+            setItemFila({...itemFila, cantidad: nuevaCantidad});
+            setCarrito([...carrito.filter( (unItem) => unItem.producto.id !== itemFila.producto.id ), {...itemFila, cantidad: nuevaCantidad}]);
         } else {
             e.target.value = itemFila.cantidad;
         }

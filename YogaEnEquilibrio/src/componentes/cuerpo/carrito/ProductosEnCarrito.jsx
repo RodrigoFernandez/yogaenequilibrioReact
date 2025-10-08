@@ -1,7 +1,7 @@
 import '../../../styles/carrito.css';
 import { FilaCarrito } from "./FilaCarrito";
 
-export const ProductosEnCarrito = ({carrito, setCarrito, actualizarTotal}) => {
+export const ProductosEnCarrito = ({carrito, setCarrito}) => {
     const eliminarItem = (itemId) => {
         setCarrito(carrito.filter( (unItem) => unItem.producto.id !== itemId ));
     }
@@ -11,7 +11,7 @@ export const ProductosEnCarrito = ({carrito, setCarrito, actualizarTotal}) => {
                             </tr>];
 
     if(carrito.length !== 0){
-        filasCarrito = carrito.map( (item) => <FilaCarrito key={item.producto.id} item={item} actualizarTotal={actualizarTotal} eliminarItem={eliminarItem}></FilaCarrito> );        
+        filasCarrito = carrito.map( (item) => <FilaCarrito key={item.producto.id} item={item} carrito={carrito} setCarrito={setCarrito} eliminarItem={eliminarItem}></FilaCarrito> );        
     }
 
     return (

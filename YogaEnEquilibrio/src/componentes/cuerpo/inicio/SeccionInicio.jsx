@@ -1,5 +1,5 @@
 import Exibidor from "./Exibidor";
-import ItemExibidor from "./ItemExibidor";
+import { ItemExibidorDetalle } from "./ItemExibidor";
 
 const SeccionInicio = ({clase, titulo, claseExibidor, claseItem, productos}) => {
   return (
@@ -7,7 +7,7 @@ const SeccionInicio = ({clase, titulo, claseExibidor, claseItem, productos}) => 
         <h2>{titulo}</h2>
         <Exibidor clase={claseExibidor}>
             {productos.map((producto) => (
-                <ItemExibidor key={producto.id} clase={claseItem} item={producto}></ItemExibidor>
+                <ItemExibidorDetalle key={producto.id} clase={claseItem} item={producto}></ItemExibidorDetalle>
             ))}
         </Exibidor>
     </section>

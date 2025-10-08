@@ -11,6 +11,7 @@ import {Nosotros} from './componentes/cuerpo/nosotros/Nosotros.jsx'
 import {Contacto} from './componentes/cuerpo/contacto/Contacto.jsx'
 import { Cargando } from './componentes/Cargando.jsx'
 import { Error } from './componentes/Error.jsx'
+import { DetalleProducto } from './componentes/cuerpo/productos/DetalleProducto.jsx'
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Inicio productos={productos}> </Inicio>}></Route>
           <Route path='/productos' element={<Productos productos={productos}></Productos>}></Route>
+          <Route path='/productos/:idProducto' element={<DetalleProducto carrito={carrito} setCarrito={setCarrito}></DetalleProducto>}></Route>
           <Route path='/carrito' element={<Carrito carrito={carrito} setCarrito={setCarrito}></Carrito>}></Route>
           <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
           <Route path='/contacto' element={<Contacto></Contacto>}></Route>

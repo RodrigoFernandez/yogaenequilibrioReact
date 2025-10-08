@@ -17,7 +17,7 @@ export function Carrito({carrito, setCarrito}) {
     return (
         <section className="carrito">
             <h2>Carrito</h2>
-            <ProductosEnCarrito carrito={carrito} setCarrito={setCarrito} actualizarTotal={actualizarTotal}></ProductosEnCarrito>
+            <ProductosEnCarrito carrito={carrito} setCarrito={setCarrito}></ProductosEnCarrito>
             <TotalCarrito totalCarrito={totalCarrito}></TotalCarrito>            
         </section>
     );
