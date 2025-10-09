@@ -31,6 +31,19 @@
     margin-bottom: 1em;
 }
 
+.enviando {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.enviando > img {
+    width: 5em;
+    height: auto;
+    animation: girar 2s linear infinite;
+}
+
 .botones {
     display: flex;
     justify-content: center;

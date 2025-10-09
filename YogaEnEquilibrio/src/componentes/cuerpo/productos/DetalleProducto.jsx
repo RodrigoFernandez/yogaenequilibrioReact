@@ -27,8 +27,11 @@ export const DetalleProducto = ({carrito, setCarrito}) => {
         navegante('/carrito');
     };
 
+    const volver = () => {
+        navegante(-1);
+    }
+
     useEffect(() => {
-        console.log(idProducto);
         fetch(`https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos/${idProducto}`)
           .then(response => response.json())
           .then(data => {
@@ -70,7 +73,7 @@ export const DetalleProducto = ({carrito, setCarrito}) => {
             </div>
             <div className="producto-detalle-botonera">
                 <button className="boton" onClick={agregarAlCarrito}>Agregar</button>
-                <Link to="/" className='boton botonVolver'>Volver</Link>
+                <button className="boton" onClick={volver}>Volver</button>
             </div>
         </section>);
 };

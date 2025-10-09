@@ -1,23 +1,69 @@
 import BotoneraConsulta from "./BotoneraConsulta";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../../../styles/contacto.css';
 
 export const Contacto = () => {
-    const [nombre, setNombre] = useState('');
-    const [email, setEmail] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const [mensaje, setMensaje] = useState('');
+    const navegante = useNavigate();
+
+    const getDefaultMensajeContacto = () => {
+        return {
+            nombre: '',
+            email: '',
+            telefono: '',
+            mensaje: ''
+        };
+    };
+
+    const [mensajeContacto, setMensajeContacto] = useState(getDefaultMensajeContacto());
+    const [enviando, setEnviando] = useState(false);
+    const [error, setError] = useState(false);
+
+    const asignarNombre = (e) => {
+        setMensajeContacto({...mensajeContacto, nombre: e.target.value});
+    }
+
+    const asignarEmail = (e) => {
+        setMensajeContacto({...mensajeContacto, email: e.target.value});
+    }
+
+    const asignarTelefono = (e) => {
+        setMensajeContacto({...mensajeContacto, telefono: e.target.value});
+    }
+
+    const asignarMensaje = (e) => {
+        setMensajeContacto({...mensajeContacto, mensaje: e.target.value});
+    }
 
     const enviarConsulta = (e) => {
         e.preventDefault();
-        console.log(`Nombre: ${nombre}, Email: ${email}, Teléfono: ${telefono}, Mensaje: ${mensaje}`);
-    }
+        
+        setEnviando(true);
+
+        fetch("https://formspree.io/f/mjkwgkov",
+            {
+                method: "post",
+                body: JSON.stringify(mensajeContacto),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        ).then(response => {
+            if (response.ok) {
+                borrarCampos(); // Resetea el formulario
+                navegante('/gracias'); // Redirige a la página de agradecimiento
+            } else {
+                setError(true);
+            }
+        }).catch(error => {
+            setError(true);
+        }).finally(() => {
+            setEnviando(false);
+        });
+    };
 
     const borrarCampos = (e) => {
-        setNombre('');
-        setEmail('');
-        setTelefono('');
-        setMensaje('');
+        setMensajeContacto(getDefaultMensajeContacto());1
     }
 
     return (
@@ -28,17 +74,24 @@ export const Contacto = () => {
                 <div></div>
                 <form onSubmit={enviarConsulta} onReset={borrarCampos}>
                     <label htmlFor="nombre">Nombre:</label>
-                    <input type="text" name="nombre" required value={nombre} onChange={(e) => setNombre(e.target.value)}></input>
+                    <input type="text" name="nombre" required value={mensajeContacto.nombre} onChange={asignarNombre}></input>
                     <label htmlFor="email" >Email:</label>
-                    <input type="email" name="email" required value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                    <input type="email" name="email" required value={mensajeContacto.email} onChange={asignarEmail}></input>
                     <label htmlFor="telefono">Teléfono:</label>
-                    <input type="text" name="telefono" value={telefono} onChange={(e) => setTelefono(e.target.value)}></input>
+                    <input type="text" name="telefono" value={mensajeContacto.telefono} onChange={asignarTelefono}></input>
                     <label htmlFor="mensaje">Mensaje:</label>
-                    <textarea name="mensaje" rows={10} required  value={mensaje} onChange={(e) => setMensaje(e.target.value)}></textarea>
-                    <BotoneraConsulta></BotoneraConsulta>
-                    <div className="mensaje-error" style={{display: 'none'}}>
-                        <p>Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.</p>
-                    </div>
+                    <textarea name="mensaje" rows={10} required  value={mensajeContacto.mensaje} onChange={asignarMensaje}></textarea>
+                    {
+                        !enviando && <BotoneraConsulta></BotoneraConsulta>
+                    }
+                    {
+                        enviando && <div className="enviando"><img src="/img/circulo_carga.svg" alt="Cargando..."></img></div>
+                    }
+                    {
+                        error && <div className="mensaje-error mensajeVisible" id="mensajeErrorEnvio">
+                            <p>Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.</p>
+                        </div>
+                    }
                 </form>
             </div>
         </section>

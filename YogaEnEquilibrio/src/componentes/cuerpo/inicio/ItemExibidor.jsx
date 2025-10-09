@@ -29,8 +29,6 @@ export const ItemExibidor = ({clase, item}) => {
 };
 
 export const ItemExibidorDetalle = ({clase, item}) => {
-    const keyModal = `modal-${item.id}`;
-    
     return (
         <div className={clase}>
             <Link to={`/productos/${item.id}`} className="enlace-producto">
