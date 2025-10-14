@@ -1,0 +1,100 @@
+.menu {
+    background-color: var(--color-fondo-header-footer);
+    font-family: var(--fuente-principal);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-hamburguesa {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0.5em;
+    background-color: var(--color-fondo-header-footer);
+    color: var(--color-texto);
+    border-radius: 5px;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu li {
+    border-bottom: 0.15rem solid transparent;
+    background-color: var(--color-fondo-header-footer);
+    width: 100%;
+    text-align: center;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: var(--color-texto);
+    padding: 10px;
+    display: block;
+}
+
+.menu li:hover {
+    border-bottom: 0.15rem solid var(--color-texto);
+    font-weight: bold;
+    filter: brightness(0.95);
+}
+
+.contador-carrito {
+    background: var(--color-primario, #e74c3c);
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.2em 0.6em;
+    font-size: 0.9em;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+@media (max-width: 48em) {
+    .menu ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--color-fondo-header-footer);
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .menu-hamburguesa {
+        display: block;
+        padding-top: 0.3em;
+        padding-bottom: 0.3em;
+    }   
+
+    .menu-toggle:checked + .menu-hamburguesa + ul {
+        display: flex;
+    }
+}
+
+@media (max-width: 30em) {
+    .menu ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--color-fondo-header-footer);
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .menu-hamburguesa {
+        display: block;
+        padding-top: 0.2em;
+        padding-bottom: 0.2em;
+    }
+
+    .menu-toggle:checked + .menu-hamburguesa + ul {
+        display: flex;
+    }
+}

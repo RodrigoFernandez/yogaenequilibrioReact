@@ -1,7 +1,8 @@
 import BotoneraConsulta from "./BotoneraConsulta";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../../../styles/contacto.css';
+//import '../../../styles/contacto.css';
+import style from './Contacto.module.css';
 
 export const Contacto = () => {
     const navegante = useNavigate();
@@ -67,10 +68,10 @@ export const Contacto = () => {
     }
 
     return (
-        <section className="contacto">
+        <section className={style.contacto}>
             <h2>Contacto</h2>
 
-            <div className="contacto-form">
+            <div className={style['contacto-form']}>
                 <div></div>
                 <form onSubmit={enviarConsulta} onReset={borrarCampos}>
                     <label htmlFor="nombre">Nombre:</label>
@@ -85,10 +86,10 @@ export const Contacto = () => {
                         !enviando && <BotoneraConsulta></BotoneraConsulta>
                     }
                     {
-                        enviando && <div className="enviando"><img src="/img/circulo_carga.svg" alt="Cargando..."></img></div>
+                        enviando && <div className={style.enviando}><img src="/img/circulo_carga.svg" alt="Cargando..."></img></div>
                     }
                     {
-                        error && <div className="mensaje-error mensajeVisible" id="mensajeErrorEnvio">
+                        error && <div className={`${style['mensaje-error']} ${style.mensajeVisible}`} id="mensajeErrorEnvio">
                             <p>Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.</p>
                         </div>
                     }

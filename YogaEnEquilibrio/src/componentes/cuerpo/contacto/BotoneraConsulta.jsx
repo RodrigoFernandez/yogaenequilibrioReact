@@ -1,8 +1,10 @@
+import style from './BotoneraConsulta.module.css';
+
 const BotoneraConsulta = () => {
   return (
-    <div className="botones">
-        <button className="boton" type="submit">Enviar</button>
-        <button className="boton" type="reset">Borrar</button>
+    <div className={style.botones}>
+        <button className={style.boton} type="submit">Enviar</button>
+        <button className={style.boton} type="reset">Borrar</button>
     </div>
   )
 }

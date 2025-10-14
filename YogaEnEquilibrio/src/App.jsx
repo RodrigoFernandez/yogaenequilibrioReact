@@ -25,6 +25,11 @@ function App() {
     fetch('https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos')
       .then(response => response.json())
       .then(data => {
+
+        if(data === "Not found"){
+          throw "Link no encontrado";
+        }
+        
         setProductos(data);
       })
       .catch(error => {

@@ -1,0 +1,13 @@
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8rem;
+    height: 60vh; /* Ajusta la altura según sea necesario */
+}
+
+.error > div {
+    padding: 1rem;
+    border-radius: 0.3125rem;
+    background-color: var(--color-fondo-header-footer);
+}

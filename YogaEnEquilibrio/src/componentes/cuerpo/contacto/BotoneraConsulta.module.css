@@ -1,0 +1,17 @@
+.botones {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.botones > button {
+    background-color: var(--color-fondo-boton);
+    color: var(--color-texto);
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1em;
+    margin-right: 1em;
+}

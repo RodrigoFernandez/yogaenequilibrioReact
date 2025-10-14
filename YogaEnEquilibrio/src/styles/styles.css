@@ -32,6 +32,7 @@ header {
     */
 }
 
+/* Pasado a EncabezadoCabecera.module.css
 .cabecera > .encabezado-cabecera {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -77,59 +78,12 @@ header {
     height: 200px;
     margin: 0.5em;
 }
+*/
 
+/* Pasado a MenuCabecera.module.css
 .menu {
     background-color: var(--color-fondo-header-footer);
     font-family: var(--fuente-principal);
-}
-
-.contador-carrito {
-    background: var(--color-primario, #e74c3c);
-    color: #fff;
-    border-radius: 50%;
-    padding: 0.2em 0.6em;
-    font-size: 0.9em;
-    margin-left: 0.5em;
-    vertical-align: middle;
-    font-weight: bold;
-}
-
-.principal > h2 {
-    text-align: center;
-    margin-top: 2em;
-    margin-bottom: 1em;
-}
-
-.pie {
-    background-color: var(--color-fondo-header-footer);
-}
-
-.boton {
-    background-color: var(--color-fondo-boton);
-    color: var(--color-texto);
-    font-family: var(--fuente-secundaria);
-    border: none;
-    padding: 0.625rem 1.25rem;
-    border-radius: 0.3125rem;
-    cursor: pointer;
-}
-
-.boton:hover {
-    filter: brightness(0.9);
-}
-
-.boton-error {
-    color: var(--color-texto-error);
-}
-
-.boton-vaciar-carrito {
-    padding: 0.3125rem 1.25rem;
-    margin: 0.3125rem;
-}
-
-.boton-deshabilitado {
-    opacity: 0.5;
-    pointer-events: none;
 }
 
 .menu-toggle {
@@ -173,6 +127,57 @@ header {
     filter: brightness(0.95);
 }
 
+.contador-carrito {
+    background: var(--color-primario, #e74c3c);
+    color: #fff;
+    border-radius: 50%;
+    padding: 0.2em 0.6em;
+    font-size: 0.9em;
+    margin-left: 0.5em;
+    vertical-align: middle;
+    font-weight: bold;
+}
+*/
+
+.principal > h2 {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.boton {
+    background-color: var(--color-fondo-boton);
+    color: var(--color-texto);
+    font-family: var(--fuente-secundaria);
+    border: none;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.3125rem;
+    cursor: pointer;
+}
+
+.boton:hover {
+    filter: brightness(0.9);
+}
+
+.boton-error {
+    color: var(--color-texto-error);
+}
+
+.boton-vaciar-carrito {
+    padding: 0.3125rem 1.25rem;
+    margin: 0.3125rem;
+}
+
+.boton-deshabilitado {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Pasado a Pie.module.css
+.pie {
+    background-color: var(--color-fondo-header-footer);
+}
+
 .footer-redes {
     display: flex;
     justify-content: center;
@@ -205,6 +210,8 @@ header {
     text-align: center;
     font-size: 0.75em;
 }
+*/
+
 
 dialog {
     border: 7px solid var(--color-fondo-header-footer);
@@ -215,12 +222,13 @@ dialog {
     font-weight: bold;
 }
 
+/* Pasado a Cargando.module.css
 .cargando {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10rem;
-    height: 60vh; /* Ajusta la altura según sea necesario */
+    height: 60vh; / Ajusta la altura según sea necesario /
 }
 
 .cargando > img {
@@ -228,13 +236,15 @@ dialog {
     height: auto;
     animation: girar 2s linear infinite;
 }
+*/
 
+/* Pasado a Error.module.css
 .error {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 8rem;
-    height: 60vh; /* Ajusta la altura según sea necesario */
+    height: 60vh; / Ajusta la altura según sea necesario /
 }
 
 .error > div {
@@ -242,7 +252,9 @@ dialog {
     border-radius: 0.3125rem;
     background-color: var(--color-fondo-header-footer);
 }
+*/
 
+/* pasado a EncabezadoCabecera.module.css y MenuCabecera.module.css
 @media (max-width: 48em) {
     .cabecera > .encabezado-cabecera {
         grid-template-columns: 2fr;
@@ -333,3 +345,4 @@ dialog {
         display: flex;
     }
 }
+*/

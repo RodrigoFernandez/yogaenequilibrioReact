@@ -1,0 +1,13 @@
+.cargando {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+    height: 60vh; /* Ajusta la altura según sea necesario */
+}
+
+.cargando > img {
+    width: 6.25rem;
+    height: auto;
+    animation: girar 2s linear infinite;
+}
