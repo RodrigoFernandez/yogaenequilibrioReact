@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Cargando } from '../../Cargando.jsx'
 import { Error } from '../../Error.jsx'
 import '../../../styles/productos.css'
+import { useCarrito } from '../../../contextos/CarritoContext.jsx';
 
-export const DetalleProducto = ({carrito, setCarrito}) => {
+export const DetalleProducto = () => {
+    const { carrito, agregarItemAlCarrito } = useCarrito();
     const { idProducto } = useParams();    
     const [item, setItem] = useState(null);
     const [cargando, setCargando] = useState(true);
@@ -14,7 +16,7 @@ export const DetalleProducto = ({carrito, setCarrito}) => {
     const actualizarCantidad = (e) => {
         
         const nuevaCantidad = parseInt(e.target.value);
-        console.log(nuevaCantidad);
+        
         if (nuevaCantidad >= 1 && nuevaCantidad <= 10) {
             setItem({...item, cantidad: nuevaCantidad});
         } else {
@@ -23,7 +25,7 @@ export const DetalleProducto = ({carrito, setCarrito}) => {
     };
 
     const agregarAlCarrito = () => {
-        setCarrito([...carrito, item]);
+        agregarItemAlCarrito(item);
         navegante('/carrito');
     };
 

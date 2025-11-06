@@ -1,0 +1,52 @@
+.login {
+    display: grid;
+    background-color: var(--color-fondo-section);
+}
+
+.login > h2 {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.login > .login-form {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-right: 4em;
+    margin-left: 4em;
+}
+
+.login > .login-form > form {
+    display: grid;
+    align-items: center;
+    margin-left: 12em;
+    margin-right: 12em;
+    margin-bottom: 1em;
+}
+
+.login > .login-form > form > label {
+    margin-bottom: 0.2em;
+}
+
+.login > .login-form > form > input {
+    margin-bottom: 1em;
+}
+
+.botones {
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.botones > button {
+    background-color: var(--color-fondo-boton);
+    color: var(--color-texto);
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 1em;
+    margin-right: 1em;
+}

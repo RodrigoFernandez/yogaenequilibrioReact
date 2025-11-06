@@ -1,4 +1,6 @@
 import style from './EncabezadoCabecera.module.css';
+import { useAuth } from '../../contextos/AuthContext';
+import { MenuAdmin } from './MenuAdmin';
 
 function LogoEncabezado({linkHome, logo}){
     return <div className={style.logo}>
@@ -15,11 +17,38 @@ function TituloEncabezado({children, titulo}){
             </div>;
 }
 
+function LoginEncabezado({linkLogin}){
+    return <div className={style.login}>
+                <a href={linkLogin}>Ingresar</a>
+            </div>;
+}
+
+function EncabezadoUsuarioSesion({usuario}){
+    return (
+        <div className={style['encabezado-sesion']}>
+            <MenuAdmin usuario={usuario}></MenuAdmin>
+        </div>
+    );
+}
+
 export function EncabezadoCabecera(){
-    return <div className={style['encabezado-cabecera']}>
+    const { usuario } = useAuth();
+
+    return (
+        <div> 
+            <div className={style['encabezado-cabecera']}>
                 <LogoEncabezado linkHome="/" logo="img/logo.svg"></LogoEncabezado>
                 <TituloEncabezado titulo="Yoga en equilibrio">
                     Conectá cuerpo y mente con productos pensados para vos
                 </TituloEncabezado>
-        </div>;
+                {
+                    !usuario && 
+                    <LoginEncabezado linkLogin="/login"></LoginEncabezado>
+                }
+                {
+                    usuario && 
+                    <EncabezadoUsuarioSesion usuario={usuario.nombre}></EncabezadoUsuarioSesion>
+                }
+            </div>
+        </div>);
 }

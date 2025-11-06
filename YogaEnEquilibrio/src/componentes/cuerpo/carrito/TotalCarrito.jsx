@@ -1,6 +1,10 @@
-export const TotalCarrito = ({totalCarrito}) => {
+import { useCarrito } from "../../../contextos/CarritoContext";
+
+export const TotalCarrito = () => {
+    const { carrito, getTotalCarrito } = useCarrito();
+    
     const getEstiloBoton = () => {
-        return totalCarrito === 0 ? "boton boton-deshabilitado" : "boton";
+        return getTotalCarrito() === 0 ? "boton boton-deshabilitado" : "boton";
     }
 
     return (
@@ -10,10 +14,10 @@ export const TotalCarrito = ({totalCarrito}) => {
                     <p>Total:</p>
                 </div>
                 <div className="precio-card" id="precioTotal">
-                    <p>${totalCarrito}</p>
+                    <p>${getTotalCarrito()}</p>
                 </div>
             </div>
-            <button type="button" className={getEstiloBoton()} id="finalizarCompraBtn" disabled={totalCarrito === 0}>Finalizar compra</button>
+            <button type="button" className={getEstiloBoton()} id="finalizarCompraBtn" disabled={getTotalCarrito() === 0}>Finalizar compra</button>
         </div>
     )
 };

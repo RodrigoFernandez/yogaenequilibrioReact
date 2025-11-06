@@ -1,8 +1,9 @@
 import { useState } from "react";
 import PopUpProducto from "../PopUpProducto";
 import { Link } from 'react-router-dom';
+//import style from './ItemExibidor.module.css';
 
-export const ItemExibidor = ({clase, item}) => {
+export const ItemExibidor = ({clase, claseEnlace, item}) => {
     const [esDialogoAbierto, setEsDialogoAbierto] = useState(false);
     
     const keyModal = `modal-${item.id}`;
@@ -17,7 +18,7 @@ export const ItemExibidor = ({clase, item}) => {
     
     return (
         <div className={clase}>
-            <a className="enlace-producto" onClick={abrirDialogo}>
+            <a className={claseEnlace} onClick={abrirDialogo}>
                 <img src={item.imagen} alt={item.nombre} />
                 <div>
                     <h3>{item.nombre}</h3>
@@ -28,10 +29,10 @@ export const ItemExibidor = ({clase, item}) => {
     );
 };
 
-export const ItemExibidorDetalle = ({clase, item}) => {
+export const ItemExibidorDetalle = ({clase, claseEnlace, item}) => {
     return (
         <div className={clase}>
-            <Link to={`/productos/${item.id}`} className="enlace-producto">
+            <Link to={`/productos/${item.id}`} className={claseEnlace}>
                 <img src={item.imagen} alt={item.nombre} />
                 <div>
                     <h3>{item.nombre}</h3>

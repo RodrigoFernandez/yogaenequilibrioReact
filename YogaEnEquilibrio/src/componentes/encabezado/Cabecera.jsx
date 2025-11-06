@@ -1,9 +1,9 @@
 import { EncabezadoCabecera } from "./EncabezadoCabecera";
 import { MenuCabecera } from "./MenuCabecera";
 
-export function Cabecera({carrito}) {
+export function Cabecera() {
     return <header className="cabecera">
             <EncabezadoCabecera></EncabezadoCabecera>
-            <MenuCabecera carrito={carrito}></MenuCabecera>
+            <MenuCabecera></MenuCabecera>
       </header>;
 }

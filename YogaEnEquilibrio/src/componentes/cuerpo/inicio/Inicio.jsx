@@ -1,3 +1,5 @@
+import style from './Inicio.module.css'
+
 import SeccionInicio from "./SeccionInicio";
 
 export const Inicio = ({productos}) => {
@@ -11,8 +13,8 @@ export const Inicio = ({productos}) => {
     
     return (
         <>
-            <SeccionInicio clase="novedades" titulo="Novedades" claseExibidor="productos-novedades" claseItem="novedades-box" productos={novedades}></SeccionInicio>
-            <SeccionInicio clase="destacados" titulo="Destacados" claseExibidor="productos-destacados" claseItem="destacados-box" productos={destacados}></SeccionInicio>
+            <SeccionInicio clase={style.novedades} titulo="Novedades" claseExibidor={style['productos-novedades']} claseItem={style['novedades-box']} claseEnlace={style['enlace-producto']} productos={novedades}></SeccionInicio>
+            <SeccionInicio clase={style.destacados} titulo="Destacados" claseExibidor={style['productos-destacados']} claseItem={style['destacados-box']} claseEnlace={style['enlace-producto']} productos={destacados}></SeccionInicio>
         </>
     );
 };

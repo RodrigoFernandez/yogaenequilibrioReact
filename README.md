@@ -45,3 +45,14 @@ El sitio consta de las siguientes secciones:
 * https://yogaexperiencias.com/minerva-robles/
 * https://www.axayoga.com.ar/tienda-de-yoga/
 * https://yogamat.com.ar/accesorios/
+
+
+## API de consulta de productos
+
+Para la API de consulta de productos se usa MockAPI.
+
+La url para acceder a los productos es: https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos
+
+## API para la autenticación de usuarios
+
+Para la autenticación de usuarios se usa Postman Mock Servers

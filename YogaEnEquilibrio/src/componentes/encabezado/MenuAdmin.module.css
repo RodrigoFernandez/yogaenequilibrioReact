@@ -1,0 +1,42 @@
+.menuAdmin {
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-right: 0.5em;
+}
+
+.botonMenu {
+    background-color: var(--color-fondo-header-footer);
+    color: var(--color-texto);
+    padding: 0.5em;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.listaMenu {
+    position: absolute;
+    background-color: var(--color-fondo-section);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    right: 0;
+}
+
+.listaMenu li a {
+    color: var(--color-texto);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.listaMenu li a:hover {
+    filter: brightness(0.95);
+}
+
+.menuAdmin:hover .botonMenu {
+    filter: brightness(0.95);
+}

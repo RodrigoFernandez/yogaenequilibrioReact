@@ -1,25 +1,28 @@
 import { use, useEffect, useState } from 'react'
 //import './App.css'
-import './styles/inicial.css'
-import { BrowserRouter,  Route, Routes } from 'react-router-dom'
-import {Pie} from './componentes/pie/Pie.jsx'
-import {Cabecera} from './componentes/encabezado/Cabecera.jsx'
-import {Inicio} from './componentes/cuerpo/inicio/Inicio.jsx'
-import {Productos} from './componentes/cuerpo/productos/Productos.jsx'
-import {Carrito} from './componentes/cuerpo/carrito/Carrito.jsx'
-import {Nosotros} from './componentes/cuerpo/nosotros/Nosotros.jsx'
-import {Contacto} from './componentes/cuerpo/contacto/Contacto.jsx'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Cargando } from './componentes/Cargando.jsx'
-import { Error } from './componentes/Error.jsx'
-import { DetalleProducto } from './componentes/cuerpo/productos/DetalleProducto.jsx'
+import { Login } from './componentes/cuerpo/administracion/Login.jsx'
+import { Carrito } from './componentes/cuerpo/carrito/Carrito.jsx'
+import { Contacto } from './componentes/cuerpo/contacto/Contacto.jsx'
 import { Gracias } from './componentes/cuerpo/gracias/Gracias.jsx'
+import { Inicio } from './componentes/cuerpo/inicio/Inicio.jsx'
+import { Nosotros } from './componentes/cuerpo/nosotros/Nosotros.jsx'
+import { DetalleProducto } from './componentes/cuerpo/productos/DetalleProducto.jsx'
+import { Productos } from './componentes/cuerpo/productos/Productos.jsx'
+import { Cabecera } from './componentes/encabezado/Cabecera.jsx'
+import { Error } from './componentes/Error.jsx'
+import { Pie } from './componentes/pie/Pie.jsx'
+import { ProtectedRoute } from './componentes/ProtectedRoute.jsx'
+import { Stock } from './componentes/cuerpo/administracion/Stock.jsx'
+import './styles/inicial.css'
 
 function App() {
 
   const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
-  const [carrito, setCarrito] = useState([]);
+  // const [carrito, setCarrito] = useState([]);
 
   useEffect(() => {
     fetch('https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos')
@@ -51,17 +54,19 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Cabecera carrito={carrito}></Cabecera>
+      <Cabecera></Cabecera>
 
       <main className="principal">
         <Routes>
           <Route path='/' element={<Inicio productos={productos}> </Inicio>}></Route>
           <Route path='/productos' element={<Productos productos={productos}></Productos>}></Route>
-          <Route path='/productos/:idProducto' element={<DetalleProducto carrito={carrito} setCarrito={setCarrito}></DetalleProducto>}></Route>
-          <Route path='/carrito' element={<Carrito carrito={carrito} setCarrito={setCarrito}></Carrito>}></Route>
+          <Route path='/productos/:idProducto' element={<DetalleProducto></DetalleProducto>}></Route>
+          <Route path='/carrito' element={<Carrito></Carrito>}></Route>
           <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>
           <Route path='/contacto' element={<Contacto></Contacto>}></Route>
           <Route path='/gracias' element={<Gracias></Gracias>}></Route>
+          <Route path='/login' element={<Login></Login>}></Route>
+          <Route path='/stock' element={<ProtectedRoute> <Stock></Stock> </ProtectedRoute>}></Route>
         </Routes>
       </main>
 

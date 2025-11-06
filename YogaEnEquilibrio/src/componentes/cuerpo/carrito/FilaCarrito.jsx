@@ -1,20 +1,24 @@
 import { useState } from "react";
+import { useCarrito } from "../../../contextos/CarritoContext";
 
-export const FilaCarrito = ({item, carrito, setCarrito, eliminarItem}) => {
+export const FilaCarrito = ({item}) => {
+    //const { carrito, agregarItemAlCarrito, eliminarItemDelCarrito, vaciarCarrito } = useCarrito();
+    const { agregarItemAlCarrito, eliminarItemDelCarrito } = useCarrito();
     const [itemFila, setItemFila] = useState(item);
 
     const actualizarCantidad = (e) => {
         const nuevaCantidad = parseInt(e.target.value);
         if (nuevaCantidad >= 1 && nuevaCantidad <= 10) {
-            setItemFila({...itemFila, cantidad: nuevaCantidad});
-            setCarrito([...carrito.filter( (unItem) => unItem.producto.id !== itemFila.producto.id ), {...itemFila, cantidad: nuevaCantidad}]);
+            const itemActualizado = {...itemFila, cantidad: nuevaCantidad};
+            setItemFila(itemActualizado);
+            agregarItemAlCarrito(itemActualizado);
         } else {
             e.target.value = itemFila.cantidad;
         }
     };
 
     const eliminarEsteItem = (e) => {
-        eliminarItem(e.target.getAttribute('item-id'));
+        eliminarItemDelCarrito(e.target.getAttribute('item-id'));
     };
 
     return (

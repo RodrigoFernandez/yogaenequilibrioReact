@@ -45,6 +45,24 @@
     margin: 0.5em;
 }
 
+.login {
+    display: flex;
+    justify-self: end;
+    height: 100%;
+}
+
+.encabezado-sesion {
+    display: flex;
+    justify-content: end;
+    height: 100%;
+    /*
+    padding-bottom: 1em;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    */
+}
+
 @media (max-width: 48em) {
     .encabezado-cabecera {
         grid-template-columns: 2fr;

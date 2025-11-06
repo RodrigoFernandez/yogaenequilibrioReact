@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import '../../../styles/carrito.css';
 import { ProductosEnCarrito } from './ProductosEnCarrito';
 import { TotalCarrito } from "./TotalCarrito";
+import { useCarrito } from '../../../contextos/CarritoContext';
 
-export function Carrito({carrito, setCarrito}) {
+export function Carrito() {
+    const { carrito } = useCarrito();
     const [totalCarrito, setTotalCarrito] = useState(0);
 
     const actualizarTotal = () => {
@@ -17,7 +19,7 @@ export function Carrito({carrito, setCarrito}) {
     return (
         <section className="carrito">
             <h2>Carrito</h2>
-            <ProductosEnCarrito carrito={carrito} setCarrito={setCarrito}></ProductosEnCarrito>
+            <ProductosEnCarrito></ProductosEnCarrito>
             <TotalCarrito totalCarrito={totalCarrito}></TotalCarrito>            
         </section>
     );
