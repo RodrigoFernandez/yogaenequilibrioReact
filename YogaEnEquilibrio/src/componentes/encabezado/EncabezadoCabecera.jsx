@@ -46,8 +46,8 @@ export function EncabezadoCabecera(){
                     <LoginEncabezado linkLogin="/login"></LoginEncabezado>
                 }
                 {
-                    usuario && 
-                    <EncabezadoUsuarioSesion usuario={usuario.nombre}></EncabezadoUsuarioSesion>
+                    usuario &&
+                    <EncabezadoUsuarioSesion usuario={usuario.username}></EncabezadoUsuarioSesion>
                 }
             </div>
         </div>);
