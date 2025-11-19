@@ -1,8 +1,8 @@
 
 
-export function LadoDerecho({children}) {
+export function LadoDerecho({claseLado, children}) {
     return (
-        <div className="derecha">
+        <div className={claseLado}>
             {children}
         </div>
     );

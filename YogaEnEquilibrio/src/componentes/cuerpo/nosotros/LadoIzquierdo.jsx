@@ -1,6 +1,6 @@
-export function LadoIzquierdo({children}) {
+export function LadoIzquierdo({claseLado, children}) {
     return (
-        <div className="izquierda">
+        <div className={claseLado}>
             {children}
         </div>
     );

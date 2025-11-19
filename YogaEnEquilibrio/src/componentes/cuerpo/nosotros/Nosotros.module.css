@@ -1,0 +1,9 @@
+.nosotros {
+    background-color: var(--color-fondo-section);
+}
+
+.nosotros > h2 {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
