@@ -1,0 +1,126 @@
+.nosotros-descripcion {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15em;
+    margin-right: 15em;
+}
+
+.nosotros-descripcion > article {
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+}
+
+.nosotros-descripcion > article > .impar {
+    margin-left: 15em;
+}
+
+.nosotros-descripcion > article > .par {
+    margin-right: 15em;
+}
+
+.nosotros-descripcion > article > .impar,
+.nosotros-descripcion > article > .par {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+.nosotros-descripcion > article > div,
+.nosotros-descripcion > article > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+.impar > .izquierda {
+    text-align: end;
+    margin-left: 5em;
+}
+
+.par > .derecha {
+    margin-right: 5em;
+}
+
+.restar-margen-superior {
+    margin-top: -5em;
+}
+
+.nosotros-descripcion > article > div > img {
+    width: 15em;
+    height: auto;
+}
+
+.nosotros-descripcion > article > .derecha > img {
+    margin-right: 10em;
+}
+
+.nosotros-descripcion > article > .izquierda > img {
+    margin-left: 10em;
+}
+
+@media (max-width: 48em) {
+    .nosotros-descripcion {
+        margin-top: 2.5em;
+        margin-bottom: 2.5em;
+        margin-left: 7.5em;
+        margin-right: 7.5em;
+    }
+
+    .nosotros-descripcion > article > div > img {
+        width: 8em;
+    }
+
+    .nosotros-descripcion > article > .derecha > img {
+        margin-right: 1em;
+    }
+
+    .nosotros-descripcion > article > .izquierda > img {
+        margin-left: 1em;
+    }
+
+    .restar-margen-superior {
+        margin-top: 0;
+    }
+
+    .impar > .izquierda {
+        text-align: center;
+    }
+
+    .par > .derecha {
+        text-align: center;
+    }
+}
+
+@media (max-width: 30em) {
+    .nosotros-descripcion {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .nosotros-descripcion > article > div > img {
+        width: 5em;
+    }
+
+    .nosotros-descripcion > article > .derecha > img {
+        margin-right: 1em;
+    }
+
+    .nosotros-descripcion > article > .izquierda > img {
+        margin-left: 1em;
+    }
+
+    .restar-margen-superior {
+        margin-top: 0;
+    }
+
+    .impar > .izquierda {
+        text-align: center;
+    }
+
+    .par > .derecha {
+        text-align: center;
+    }
+}
