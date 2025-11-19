@@ -1,8 +1,10 @@
+import { useProductos } from '../../../contextos/ProductosContext'
 import style from './Inicio.module.css'
 
 import SeccionInicio from "./SeccionInicio";
 
-export const Inicio = ({productos}) => {
+export const Inicio = () => {
+    const {productos} = useProductos();
     let novedades = [];
     let destacados = [];
 

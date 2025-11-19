@@ -15,14 +15,15 @@ import { Error } from './componentes/Error.jsx'
 import { Pie } from './componentes/pie/Pie.jsx'
 import { ProtectedRoute } from './componentes/ProtectedRoute.jsx'
 import { Stock } from './componentes/cuerpo/administracion/Stock.jsx'
+import { useProductos } from './contextos/ProductosContext.jsx'
 import './styles/inicial.css'
 
 function App() {
 
-  const [productos, setProductos] = useState([]);
+  //const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
-  // const [carrito, setCarrito] = useState([]);
+  const {setProductos} = useProductos()
 
   useEffect(() => {
     fetch('https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos')
@@ -58,8 +59,8 @@ function App() {
 
       <main className="principal">
         <Routes>
-          <Route path='/' element={<Inicio productos={productos}> </Inicio>}></Route>
-          <Route path='/productos' element={<Productos productos={productos}></Productos>}></Route>
+          <Route path='/' element={<Inicio> </Inicio>}></Route>
+          <Route path='/productos' element={<Productos></Productos>}></Route>
           <Route path='/productos/:idProducto' element={<DetalleProducto></DetalleProducto>}></Route>
           <Route path='/carrito' element={<Carrito></Carrito>}></Route>
           <Route path='/nosotros' element={<Nosotros></Nosotros>}></Route>

@@ -1,7 +1,9 @@
+import { useProductos } from '../../../contextos/ProductosContext'
 import ListadoProductos from "./ListadoProductos"
 import '../../../styles/productos.css'
 
-export const Productos = ({productos}) => {
+export const Productos = () => {
+    const [productos] = useProductos();
 
     return (
         <section className="productos">
