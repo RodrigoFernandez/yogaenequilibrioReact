@@ -2,6 +2,7 @@ import style from './Login.module.css';
 import { useState } from 'react';
 import { useAuth } from '../../../contextos/AuthContext.jsx';
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 export function Login(){
     const navegante = useNavigate();
@@ -14,7 +15,7 @@ export function Login(){
     };
 
     const [usuarioLogin, setUsuarioLogin] = useState(getDefaultLogin());
-    const [enviando, setEnviando] = useState(false);
+    //const [enviando, setEnviando] = useState(false);
     const [error, setError] = useState(false);
     const {login} = useAuth();
 
@@ -29,11 +30,37 @@ export function Login(){
     const ingresar = (e) => {
         e.preventDefault();
         
-        setEnviando(true);
+        //setEnviando(true);
 
-        login(usuarioLogin.usuario);
-        navegante('/'); // Redirige a la página principal después del login
-        // Aquí iría la lógica para enviar los datos de login al servidor
+        fetch('https://jwt-users-mock.vercel.app/auth/login',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username: usuarioLogin.usuario, password: usuarioLogin.contrasenia})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data){
+                    if(data.token && data.user){
+                        login(data.user, data.token);
+                        navegante('/'); // Redirige a la página principal después del login
+                    } else {
+                        throw "Verifique sus credenciales e intente nuevamente.";
+                    }
+                } else {
+                    throw "Error en login, no hubo respuesta";
+                }
+
+            })
+            .catch(error => {
+                console.error('Error en login:', error);
+                setError(error);
+                toast.error(error);
+            });
+
     };
 
     return <section className={style.login}>
@@ -49,6 +76,7 @@ export function Login(){
                         
                         <div className={style.botones}>
                             <button className={style.boton} type="submit">Ingresar</button>
+                            <ToastContainer />
                         </div>
                     </form>
                 </div>
