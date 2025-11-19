@@ -1,0 +1,53 @@
+.stock {
+    background-color: var(--color-fondo-section);
+    margin-left: 10em;
+    margin-right: 10em;
+    margin-top: 2em;
+}
+
+.lista-stock {
+
+}
+
+.lista-stock-cabecera, .producto-stock {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 3fr 1fr 1fr 1fr 1fr 2fr;
+    gap: 0.625em;
+    padding: 0.625em 0;
+    border-bottom: 0.0625em solid #ddd;
+    align-items: center;
+}
+
+.lista-stock-cabecera {
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+
+.lista-stock-cabecera-titulo {
+
+}
+
+.lista-stock-cabecera-titulo-acciones {
+
+}
+
+.lista-stock-cuerpo {
+
+}
+
+.producto-stock {
+    
+}
+
+.producto-stock-imagen > img {
+    width: 2em;
+    height: auto;
+}
+
+.edicion {
+
+}
+
+.baja {
+
+}
