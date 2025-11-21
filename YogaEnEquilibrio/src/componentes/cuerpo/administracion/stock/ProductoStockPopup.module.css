@@ -12,7 +12,7 @@
     z-index: 1000;
     position: fixed;
     top: 50%;
-    left: 25%;
+    left: 50%;
     transform: translate(-50%, -50%);
     padding: 0;
     border: none;
@@ -26,10 +26,12 @@
 }
 
 .modal-producto-contenido {
-    padding: 2em;
+    /*padding: 2em;*/
     display: flex;
     flex-direction: column;
     gap: 1em;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
 }
 
 .modal-imagen {
@@ -47,13 +49,16 @@
 
 .modal-producto-header > h3 {
     padding-left: 0.5em;
-    padding-top: 0.625em;
-    padding-bottom: 0.625em;
+    /*padding-top: 0.625em;
+    padding-bottom: 0.625em;*/
 }
 
 .modal-producto-body {
     display: flex;
     flex-direction: column;
+    padding-left: 1em;
+    padding-right: 1em;
+    gap: 1em;
 }
 
  .modal-producto-fila {
@@ -65,10 +70,12 @@
 
 .modal-producto-label {
     font-weight: bold;
+    margin-bottom: 0.2em;
 }
 
 .modal-producto-valor {
-    text-align: left
+    text-align: left;
+    margin-bottom: 0.2em;
 }
 
 .modal-botonera {
@@ -76,6 +83,8 @@
     justify-content: flex-end;
     gap: 0.5em;
     margin-bottom: 0.625em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .modal-producto-form {
@@ -83,17 +92,24 @@
     grid-template-columns: 1fr;
 }
 
-.modal-producto-form > div {
+.modal-producto-campos, .modal-producto-campos-exhibidor {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     margin-bottom: 1em;
     margin-left: 1em;
     margin-right: 1em;
+    gap: 1em;
 }
 
-.modal-producto-form > div > label {
+.modal-producto-campos-exhibidor {
+    margin-bottom: unset;
+}
+
+.modal-producto-form > div > label,
+.modal-producto-form > div > div > label {
     margin-bottom: 0.2em;
+    font-weight: bold;
 }
 
 .modal-producto-form > div > input {
