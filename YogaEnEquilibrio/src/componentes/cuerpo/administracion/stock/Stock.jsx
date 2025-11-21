@@ -1,4 +1,4 @@
-import { useProductos } from '../../../contextos/ProductosContext';
+import { useProductos } from '../../../../contextos/ProductosContext';
 import ListaStock from './ListaStock';
 import style from './Stock.module.css';
 

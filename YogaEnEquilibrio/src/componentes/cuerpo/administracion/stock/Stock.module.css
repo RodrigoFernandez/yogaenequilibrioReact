@@ -1,0 +1,207 @@
+.stock {
+    background-color: var(--color-fondo-section);
+    margin-left: 10em;
+    margin-right: 10em;
+    margin-top: 2em;
+}
+
+.barra-herramientas-stock {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.lista-stock {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.lista-stock-cabecera, .producto-stock {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 3fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 0.625em;
+    padding: 0.625em 0;
+    border-bottom: 0.0625em solid color-mix(in srgb, var(--color-fondo-header-footer) 60%, black);
+    align-items: center;
+}
+
+.lista-stock-cabecera {
+    font-weight: bold;
+    background-color: var(--color-fondo-header-footer);
+}
+
+.lista-stock-cabecera-titulo {
+  padding-left: 0.625em;
+}
+
+.producto-stock-id, .producto-stock-nombre, .producto-stock-descripcion,
+.producto-stock-precio, .producto-stock-novedad, .producto-stock-destacado,
+.producto-stock-imagen, .producto-stock-acciones {
+  padding-left: 0.625em;
+}
+
+.producto-stock-novedad, .producto-stock-destacado,
+.producto-stock-imagen, .producto-stock-acciones {
+  text-align: center;
+}
+
+.producto-stock-precio {
+  text-align: right;
+}
+
+.producto-stock-descripcion {
+    padding-left: 0.625em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.lista-stock-cabecera-titulo-acciones {
+
+}
+
+.lista-stock-cuerpo {
+
+}
+
+.producto-stock {
+    
+}
+
+.producto-stock-imagen > img {
+    width: 2em;
+    height: auto;
+}
+
+/* ...existing code... */
+
+.edicion {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-image: url('img/lapiz.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-right: 0.25em;
+}
+
+.baja {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-image: url('img/tacho.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-right: 0.25em;
+}
+
+.mostrar {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    background-image: url('img/lupa.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    margin-right: 0.25em;
+}
+
+.lista-stock-pie {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: center;
+  background-color: var(--color-fondo-header-footer);
+}
+
+/* Estilos del ejemplo */
+
+/* ProductList.css */
+/* --- 1. Estilos Base para Escritorio (Desktop First) --- */
+
+.table-header,
+.table-row {
+  display: grid;
+  /* Define las 7 columnas con un ancho relativo */
+  grid-template-columns: 0.5fr 2fr 3fr 1fr 1fr 1fr 1fr; 
+  gap: 10px; /* Espacio entre columnas */
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  align-items: center;
+}
+
+.table-header {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+.table-cell, .header-cell {
+  padding: 8px;
+  /* Ocultamos los labels de móvil en desktop */
+  text-align: left;
+}
+
+/* Ocultar elementos específicos en escritorio (solo se usa en móvil) */
+.table-cell::before {
+  content: none; 
+}
+.mobile-only {
+    display: none;
+}
+.desktop-only {
+    display: block;
+}
+
+
+/* --- 2. Media Query para Móviles (< 768px) --- */
+
+@media (max-width: 768px) {
+  
+  /* Ocultamos el encabezado de la tabla */
+  .table-header {
+    display: none;
+  }
+  
+  /* Mostramos elementos solo en móvil */
+  .desktop-only {
+    display: none;
+  }
+
+  /* La fila se convierte en una tarjeta de una sola columna (Flexbox o Grid) */
+  .table-row {
+    display: block; /* Volvemos a comportamiento de caja normal */
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  /* Cada celda se vuelve un bloque (apilándose) */
+  .table-cell {
+    display: flex; /* Usamos flexbox para alinear label y valor */
+    justify-content: space-between;
+    padding: 5px 0;
+    border: none;
+  }
+
+  /* Mostramos el label (nombre del campo) antes del valor */
+  .table-cell::before {
+    content: attr(data-label) ": "; /* Muestra el texto del atributo data-label */
+    font-weight: bold;
+    color: #555;
+    flex-shrink: 0; /* Evita que el label se encoja */
+    margin-right: 10px;
+  }
+  
+  /* Formato especial para la botonera */
+  .actions-cell {
+    display: flex;
+    flex-direction: column; /* Apilamos los botones verticalmente */
+    gap: 10px;
+    padding-top: 15px;
+    border-top: 1px dashed #eee;
+    margin-top: 10px;
+  }
+}

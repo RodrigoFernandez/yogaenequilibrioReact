@@ -14,9 +14,8 @@ import { Cabecera } from './componentes/encabezado/Cabecera.jsx'
 import { Error } from './componentes/Error.jsx'
 import { Pie } from './componentes/pie/Pie.jsx'
 import { ProtectedRoute } from './componentes/ProtectedRoute.jsx'
-import { Stock } from './componentes/cuerpo/administracion/Stock.jsx'
+import { Stock } from './componentes/cuerpo/administracion/stock/Stock.jsx'
 import { useProductos } from './contextos/ProductosContext.jsx'
-import './styles/inicial.css'
 
 function App() {
 

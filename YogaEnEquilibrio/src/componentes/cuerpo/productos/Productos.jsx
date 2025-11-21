@@ -3,7 +3,7 @@ import ListadoProductos from "./ListadoProductos"
 import '../../../styles/productos.css'
 
 export const Productos = () => {
-    const [productos] = useProductos();
+    const {productos} = useProductos();
 
     return (
         <section className="productos">

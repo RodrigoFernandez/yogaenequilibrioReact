@@ -7,10 +7,10 @@ const ListaStockCabecera = () => {
             <div className={style['lista-stock-cabecera-titulo']}>Nombre</div>
             <div className={style['lista-stock-cabecera-titulo']}>Descripción</div>
             <div className={style['lista-stock-cabecera-titulo']}>Precio</div>
-            <div className={style['lista-stock-cabecera-titulo']}>es Novedad</div>
-            <div className={style['lista-stock-cabecera-titulo']}>es Destacado</div>
+            <div className={style['lista-stock-cabecera-titulo']}>Novedad</div>
+            <div className={style['lista-stock-cabecera-titulo']}>Destacado</div>
             <div className={style['lista-stock-cabecera-titulo']}>Imágen</div>
-            <div className={style['lista-stock-cabecera-titulo-acciones']}>Acciones</div>
+            <div className={style['lista-stock-cabecera-titulo-acciones']}></div>
         </div>
     );
 }
