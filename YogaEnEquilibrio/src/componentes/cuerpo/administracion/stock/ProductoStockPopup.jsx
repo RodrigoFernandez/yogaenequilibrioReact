@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import style from './ProductoStockPopup.module.css';
 import { Portal } from '../../../../Portal';
+import { toast, ToastContainer } from 'react-toastify';
 
 const ExhibidorProducto = ({producto, cerrarDialogo, modificar}) => {
    return (
@@ -33,7 +34,7 @@ const ExhibidorProducto = ({producto, cerrarDialogo, modificar}) => {
 };
 
 const EditorProducto = ({ cerrarDialogo, producto }) => {
-    const [productoEdicion, setProductoEdicion] = useState(producto || {
+    const getDefaultProducto = () => ({
         nombre: '',     
         precio: '',
         esNovedad: false,
@@ -42,34 +43,81 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
         descripcion: ''
     });
 
+    const [productoEdicion, setProductoEdicion] = useState(producto || getDefaultProducto());
+    const [errorValidacion, setErrorValidacion] = useState([]);
+
+    const validarCampos = () => {
+        let errores = {};
+
+        if (!productoEdicion.nombre || productoEdicion.nombre.trim() === '') {
+            errores.nombre = 'El nombre es obligatorio.';
+        }
+        
+        if (!productoEdicion.precio || isNaN(productoEdicion.precio) || parseFloat(productoEdicion.precio) <= 0) { 
+            errores.precio = 'El precio debe ser un número positivo.';
+        }
+
+        if (!productoEdicion.imagen || productoEdicion.imagen.trim() === '') {
+            errores.imagen = 'La URL de la imagen es obligatoria.';
+        }
+
+        if (productoEdicion.descripcion
+            && productoEdicion.descripcion.length > 0
+            && productoEdicion.descripcion.trim() === '') {
+            errores.descripcion = 'La descripción no deben ser solo espacios en blanco.';
+        }
+
+        return errores;
+    };
+
+    const persistirProducto = () =>{
+        // TODO ver si esto funciona correctamente
+        //fetch("https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos",
+        fetch("https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productosPrueba",
+            {
+                method: "post",
+                body: JSON.stringify(productoEdicion),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        ).then(response => {
+            if (response.ok) {
+                toast.success("Producto guardado con éxito.");
+                limpiarYCerrarDialogo();
+            } else {
+                throw "Error al guardar el producto.";
+            }
+        }).catch(error => {
+            toast.error(error + " Aguarde un momento e intente nuevamente.");
+        });
+    }
+
     const guardarProducto = (e) => {
         e.preventDefault();
-        // Lógica para guardar el nuevo producto
-        cerrarDialogo();
+
+        setErrorValidacion(validarCampos())
+
+        if(Object.keys(errorValidacion).length == 0) {
+            persistirProducto();
+        }
     };
 
     const limpiarYCerrarDialogo = (e) => {
-        e.preventDefault();
+        if(e){
+            e.preventDefault();
+        }
+
+        setProductoEdicion(getDefaultProducto());
         cerrarDialogo();
     };
 
-    const asignarNombre = (e) => {
-        setProductoEdicion({...productoEdicion, nombre: e.target.value});
-    };
-    const asignarPrecio = (e) => {
-        setProductoEdicion({...productoEdicion, precio: e.target.value});
-    };
-    const asignarEsNovedad = (e) => {
-        setProductoEdicion({...productoEdicion, esNovedad: e.target.checked});
-    };
-    const asignarEsDestacado = (e) => {
-        setProductoEdicion({...productoEdicion, esDestacado: e.target.checked});
-    };
-    const asignarImagen = (e) => {
-        setProductoEdicion({...productoEdicion, imagen: e.target.value});
-    };
-    const asignarDescripcion = (e) => {
-        setProductoEdicion({...productoEdicion, descripcion: e.target.value});
+    const asignarCampo = (e) => {
+        const { name, value, type, checked } = e.target;
+        setProductoEdicion({
+            ...productoEdicion,
+            [name]: type === 'checkbox' ? checked : value
+        });
     };
 
     return (
@@ -81,27 +129,32 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
                 <form className={style['modal-producto-form']} onSubmit={guardarProducto} onReset={limpiarYCerrarDialogo}>
                     <div className={style['modal-producto-campos']} >
                         <label htmlFor="nombre">Nombre:</label>
-                        <input type="text" name="nombre" value={productoEdicion.nombre} onChange={asignarNombre} required />
+                        <input type="text" name="nombre" value={productoEdicion.nombre} onChange={asignarCampo} required />
+                        {errorValidacion.nombre && <p className={style['modal-error']}>{errorValidacion.nombre}</p>}
                         <label htmlFor="precio">Precio:</label>
-                        <input type="number" name="precio" step="0.01" required value={productoEdicion.precio} onChange={asignarPrecio} />
+                        <input type="number" name="precio" step="0.01" required value={productoEdicion.precio} onChange={asignarCampo} />
+                        {errorValidacion.precio && <p className={style['modal-error']}>{errorValidacion.precio}</p>}
                         <label htmlFor="esNovedad">Es novedad:</label>
                         <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esNovedad" checked={productoEdicion.esNovedad} onChange={asignarEsNovedad} />
+                            <input type="checkbox" name="esNovedad" checked={productoEdicion.esNovedad} onChange={asignarCampo} />
                         </div>
                         <label htmlFor="esDestacado">Es destacado:</label>
                         <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esDestacado" checked={productoEdicion.esDestacado} onChange={asignarEsDestacado}/>
+                            <input type="checkbox" name="esDestacado" checked={productoEdicion.esDestacado} onChange={asignarCampo}/>
                         </div>
                         <label htmlFor="imagen">Imagen URL:</label>
-                        <input type="url" name="imagen" required  value={productoEdicion.imagen} onChange={asignarImagen}/>
+                        <input type="url" name="imagen" required  value={productoEdicion.imagen} onChange={asignarCampo}/>
+                        {errorValidacion.imagen && <p className={style['modal-error']}>{errorValidacion.imagen}</p>}
                         <div className={style['modal-descripcion-label']}>
                             <label htmlFor="descripcion">Descripción:</label>
                         </div>
-                        <textarea name="descripcion" rows={10} required  value={productoEdicion.descripcion} onChange={asignarDescripcion}></textarea>
+                        <textarea name="descripcion" rows={10} required  value={productoEdicion.descripcion} onChange={asignarCampo}></textarea>
+                        {errorValidacion.descripcion && <p className={style['modal-error']}>{errorValidacion.descripcion}</p>}
                     </div>
                     <div className={style['modal-botonera']}>
                         <button className="boton">Guardar</button>
                         <button className="boton" onClick={cerrarDialogo}>Cancelar</button>
+                        <ToastContainer></ToastContainer>
                     </div>
                 </form>
             </div> 

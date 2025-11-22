@@ -16,14 +16,18 @@ const ListaStockCuerpo = () => {
 
     const mostrarProducto = (e, unProducto) => {
         e.preventDefault();
-        console.log(unProducto);
         setEsDialogoAbierto(true);
         setUnProducto(unProducto);
     };
 
+    const confirmarBajaProducto = (productoBaja) => {
+        // TODO Lógica para eliminar el producto del stock
+    };
+
     const bajaProducto = (e, productoBaja) => {
         e.preventDefault();
-        console.log(productoBaja);
+
+        // TODO Mostrar popup de confirmación antes de eliminar
     };
 
     const acciones = [{nombre: 'mostrar', clase: 'mostrar', handler: mostrarProducto}, {nombre: 'baja', clase: 'baja', handler: bajaProducto}];
