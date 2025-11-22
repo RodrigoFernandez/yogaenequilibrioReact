@@ -5,7 +5,7 @@ import ProductoStock from './ProductoStock';
 import ProductoStockPopup from './ProductoStockPopup';
 
 const ListaStockCuerpo = () => {
-    const {productos, setProductos} = useProductos();
+    const {stock} = useProductos();
     const [esDialogoAbierto, setEsDialogoAbierto] = useState(false);
     const [unProducto, setUnProducto] = useState(null);
 
@@ -31,8 +31,8 @@ const ListaStockCuerpo = () => {
     return (
         <div>
             <div className={style['lista-stock-cuerpo']}>
-                {productos.length > 0 ?
-                    (productos.map((producto) => (
+                {stock.length > 0 ?
+                    (stock.map((producto) => (
                             <ProductoStock key={producto.id} producto={producto} acciones={acciones}></ProductoStock>
                         ))
                     )

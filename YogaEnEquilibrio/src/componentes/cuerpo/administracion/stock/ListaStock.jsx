@@ -3,10 +3,13 @@ import ListaStockCabecera from './ListaStockCabecera';
 import ListaStockCuerpo from './ListaStockCuerpo';
 import ListaStockPie from './ListaStockPie';
 import ProductoStockPopup from './ProductoStockPopup';
+import { useProductos } from '../../../../contextos/ProductosContext';
 import style from './Stock.module.css';
 
 const ListaStock = () => {
+    const {buscarProductos} = useProductos();
     const [esDialogoAbierto, setEsDialogoAbierto] = useState(false);
+    const [criterioBusqueda, setCriterioBusqueda] = useState('');
 
     const cerrarDialogo = () => {
         setEsDialogoAbierto(false);
@@ -17,18 +20,25 @@ const ListaStock = () => {
         setEsDialogoAbierto(true);
     };
 
-    const buscarProducto = (e) => {
+    const buscarProductoPorCriterio = (e) => {
         e.preventDefault();
         // Lógica de búsqueda de productos
         console.log('Buscar producto');
+        buscarProductos(criterioBusqueda);
     };
 
+    const verificarTeclasPresionadas = (e) => {
+        if (e.key === 'Enter') {
+            buscarProductoPorCriterio(e);
+        }
+    };
+    
     return (
         <>
         <div className={style['barra-herramientas-stock']}>
             <div className={style['barra-busqueda-stock']}>
-                <input type="text" placeholder="Buscar producto..." />
-                <button className="boton" onClick={buscarProducto}>Buscar</button>
+                <input type="text" placeholder="Buscar producto..." value={criterioBusqueda} onChange={(e) => setCriterioBusqueda(e.target.value)} onKeyDown={verificarTeclasPresionadas}/>
+                <button className="boton" onClick={buscarProductoPorCriterio}>Buscar</button>
             </div>
             <button className="boton" onClick={altaProducto}>Agregar Producto</button>
             <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} cerrarDialogo={cerrarDialogo} esNuevo={true}></ProductoStockPopup>
