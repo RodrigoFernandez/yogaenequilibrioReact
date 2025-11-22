@@ -46,6 +46,8 @@
 
 .modal-producto-header {
     margin: 0.0625em;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
 }
 
 .modal-producto-header > h3 {
