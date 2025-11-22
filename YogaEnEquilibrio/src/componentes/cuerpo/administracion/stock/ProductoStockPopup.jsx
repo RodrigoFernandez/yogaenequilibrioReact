@@ -53,7 +53,24 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
         cerrarDialogo();
     };
 
-    //si viene el producto, cargar los datos en el formulario para edición
+    const asignarNombre = (e) => {
+        setProductoEdicion({...productoEdicion, nombre: e.target.value});
+    };
+    const asignarPrecio = (e) => {
+        setProductoEdicion({...productoEdicion, precio: e.target.value});
+    };
+    const asignarEsNovedad = (e) => {
+        setProductoEdicion({...productoEdicion, esNovedad: e.target.checked});
+    };
+    const asignarEsDestacado = (e) => {
+        setProductoEdicion({...productoEdicion, esDestacado: e.target.checked});
+    };
+    const asignarImagen = (e) => {
+        setProductoEdicion({...productoEdicion, imagen: e.target.value});
+    };
+    const asignarDescripcion = (e) => {
+        setProductoEdicion({...productoEdicion, descripcion: e.target.value});
+    };
 
     return (
         <div className={style['modal-producto-contenido']}>
@@ -64,23 +81,23 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
                 <form className={style['modal-producto-form']} onSubmit={guardarProducto} onReset={limpiarYCerrarDialogo}>
                     <div className={style['modal-producto-campos']} >
                         <label htmlFor="nombre">Nombre:</label>
-                        <input type="text" name="nombre" value={productoEdicion.nombre} required />
+                        <input type="text" name="nombre" value={productoEdicion.nombre} onChange={asignarNombre} required />
                         <label htmlFor="precio">Precio:</label>
-                        <input type="number" name="precio" step="0.01" required value={productoEdicion.precio}/>
+                        <input type="number" name="precio" step="0.01" required value={productoEdicion.precio} onChange={asignarPrecio} />
                         <label htmlFor="esNovedad">Es novedad:</label>
                         <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esNovedad" checked={productoEdicion.esNovedad} />
+                            <input type="checkbox" name="esNovedad" checked={productoEdicion.esNovedad} onChange={asignarEsNovedad} />
                         </div>
                         <label htmlFor="esDestacado">Es destacado:</label>
                         <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esDestacado" checked={productoEdicion.esDestacado}/>
+                            <input type="checkbox" name="esDestacado" checked={productoEdicion.esDestacado} onChange={asignarEsDestacado}/>
                         </div>
                         <label htmlFor="imagen">Imagen URL:</label>
-                        <input type="url" name="imagen" required  value={productoEdicion.imagen}/>
+                        <input type="url" name="imagen" required  value={productoEdicion.imagen} onChange={asignarImagen}/>
                         <div className={style['modal-descripcion-label']}>
                             <label htmlFor="descripcion">Descripción:</label>
                         </div>
-                        <textarea name="descripcion" rows={10} required  value={productoEdicion.descripcion}></textarea>
+                        <textarea name="descripcion" rows={10} required  value={productoEdicion.descripcion} onChange={asignarDescripcion}></textarea>
                     </div>
                     <div className={style['modal-botonera']}>
                         <button className="boton">Guardar</button>
