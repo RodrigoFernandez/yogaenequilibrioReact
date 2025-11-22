@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import style from './ProductoStockPopup.module.css';
+import { Portal } from '../../../../Portal';
 
 const ExhibidorProducto = ({producto, cerrarDialogo, modificar}) => {
    return (
@@ -31,7 +32,16 @@ const ExhibidorProducto = ({producto, cerrarDialogo, modificar}) => {
     );
 };
 
-const AltaProducto = ({ cerrarDialogo, producto }) => {
+const EditorProducto = ({ cerrarDialogo, producto }) => {
+    const [productoEdicion, setProductoEdicion] = useState(producto || {
+        nombre: '',     
+        precio: '',
+        esNovedad: false,
+        esDestacado: false,
+        imagen: '',
+        descripcion: ''
+    });
+
     const guardarProducto = (e) => {
         e.preventDefault();
         // Lógica para guardar el nuevo producto
@@ -54,23 +64,23 @@ const AltaProducto = ({ cerrarDialogo, producto }) => {
                 <form className={style['modal-producto-form']} onSubmit={guardarProducto} onReset={limpiarYCerrarDialogo}>
                     <div className={style['modal-producto-campos']} >
                         <label htmlFor="nombre">Nombre:</label>
-                        <input type="text" name="nombre" required />
+                        <input type="text" name="nombre" value={productoEdicion.nombre} required />
                         <label htmlFor="precio">Precio:</label>
-                        <input type="number" name="precio" step="0.01" required />
+                        <input type="number" name="precio" step="0.01" required value={productoEdicion.precio}/>
                         <label htmlFor="esNovedad">Es novedad:</label>
                         <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esNovedad" />
+                            <input type="checkbox" name="esNovedad" checked={productoEdicion.esNovedad} />
                         </div>
                         <label htmlFor="esDestacado">Es destacado:</label>
                         <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esDestacado" />
+                            <input type="checkbox" name="esDestacado" checked={productoEdicion.esDestacado}/>
                         </div>
                         <label htmlFor="imagen">Imagen URL:</label>
-                        <input type="url" name="imagen" required />
+                        <input type="url" name="imagen" required  value={productoEdicion.imagen}/>
                         <div className={style['modal-descripcion-label']}>
                             <label htmlFor="descripcion">Descripción:</label>
                         </div>
-                        <textarea name="descripcion" rows={10} required></textarea>
+                        <textarea name="descripcion" rows={10} required  value={productoEdicion.descripcion}></textarea>
                     </div>
                     <div className={style['modal-botonera']}>
                         <button className="boton">Guardar</button>
@@ -82,7 +92,6 @@ const AltaProducto = ({ cerrarDialogo, producto }) => {
     );
 };
 
-
 const ProductoStockPopup = ({ producto, esDialogoAbierto, cerrarDialogo, esNuevo }) => {
     const [esModificacion, setEsModificacion] = useState(false);
     
@@ -90,25 +99,32 @@ const ProductoStockPopup = ({ producto, esDialogoAbierto, cerrarDialogo, esNuevo
         setEsModificacion(true);
     };
 
+    useEffect(() => {
+        if (!esDialogoAbierto) {
+            setEsModificacion(false);
+        }
+    }, [esDialogoAbierto]);
+
     return (
         <>
-            {esDialogoAbierto && (
-                    <div className={style['modal-overlay']}></div>
-                )}
-
-            <dialog className={style['modal-producto']} open={esDialogoAbierto} aria-modal="true">
+        {esDialogoAbierto &&
+        <Portal>
+            <div className={style['modal-overlay']}></div>
+            
+            <div className={style['modal-producto']} open={esDialogoAbierto} aria-modal="true">
                 { !esNuevo && producto && !esModificacion && (
                     <ExhibidorProducto producto={producto} cerrarDialogo={cerrarDialogo} modificar={modificarProducto}></ExhibidorProducto>
                 )}
 
                 { !esNuevo && producto && esModificacion && (
-                    <>aca se modifica</>
+                    <EditorProducto cerrarDialogo={cerrarDialogo} producto={producto}></EditorProducto>
                 )}
 
                 { esNuevo && (
-                    <AltaProducto cerrarDialogo={cerrarDialogo} producto={producto}></AltaProducto>
+                    <EditorProducto cerrarDialogo={cerrarDialogo} producto={producto}></EditorProducto>
                 )}
-            </dialog>
+            </div>
+        </Portal>}
         </>
     );
 };
