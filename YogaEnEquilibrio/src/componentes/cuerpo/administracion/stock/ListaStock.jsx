@@ -17,12 +17,18 @@ const ListaStock = () => {
         setEsDialogoAbierto(true);
     };
 
+    const buscarProducto = (e) => {
+        e.preventDefault();
+        // Lógica de búsqueda de productos
+        console.log('Buscar producto');
+    };
+
     return (
         <>
         <div className={style['barra-herramientas-stock']}>
-            <div>
+            <div className={style['barra-busqueda-stock']}>
                 <input type="text" placeholder="Buscar producto..." />
-                <button className="boton" onClick={altaProducto}>Buscar</button>
+                <button className="boton" onClick={buscarProducto}>Buscar</button>
             </div>
             <button className="boton" onClick={altaProducto}>Agregar Producto</button>
             <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} cerrarDialogo={cerrarDialogo} esNuevo={true}></ProductoStockPopup>

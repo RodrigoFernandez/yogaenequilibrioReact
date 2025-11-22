@@ -8,6 +8,17 @@
 .barra-herramientas-stock {
   display: flex;
   justify-content: flex-end;
+  gap: 1em;
+}
+
+.barra-busqueda-stock {
+  flex-grow: 1;
+  display: flex;
+  gap: 0.5em;
+}
+
+.barra-busqueda-stock > input{
+  flex-grow: 0.5;
 }
 
 .lista-stock {
