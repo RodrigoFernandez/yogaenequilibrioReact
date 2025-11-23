@@ -97,7 +97,6 @@
 
 .modal-producto-campos, .modal-producto-campos-exhibidor {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     align-items: center;
     margin-bottom: 1em;
     margin-left: 1em;
@@ -107,6 +106,34 @@
 
 .modal-producto-campos-exhibidor {
     margin-bottom: unset;
+    grid-template-columns: 1fr 1fr;
+}
+
+.modal-producto-campos {
+    grid-template-columns: 1fr;
+}
+
+.modal-producto-fila-editor {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-bottom: 0.5em;
+    gap: 1em;
+}
+
+.modal-producto-campor-editor {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1em;
+}
+
+.etiqueta-campo {
+    font-weight: bold;
+}
+
+.modal-error {
+    color: var(--color-texto-error);
+    font-size: 0.875em;
+    margin-top: 0.2em;
 }
 
 .modal-producto-form > div > label,
@@ -126,6 +153,7 @@
 
 .modal-descripcion-label {
     height: 99%;
+    font-weight: bold;
 }
 
 .modal-botonera {

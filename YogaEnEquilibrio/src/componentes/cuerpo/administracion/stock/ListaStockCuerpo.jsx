@@ -3,16 +3,23 @@ import { useProductos } from '../../../../contextos/ProductosContext';
 import style from './Stock.module.css'
 import ProductoStock from './ProductoStock';
 import ProductoStockPopup from './ProductoStockPopup';
+import ConfirmacionBajaPopup from './ConfirmacionBajaPopup';
 
 const ListaStockCuerpo = () => {
     const {stock} = useProductos();
     const [esDialogoAbierto, setEsDialogoAbierto] = useState(false);
     const [unProducto, setUnProducto] = useState(null);
+    const [esConfirmacionAbierta, setEsConfirmacionAbierta] = useState(false);
 
     const cerrarDialogo = () => {
         setEsDialogoAbierto(false);
         setUnProducto(null);
     };
+
+    const cerrarConfirmacion = () => {
+        setEsConfirmacionAbierta(false);
+        setUnProducto(null);
+    }
 
     const mostrarProducto = (e, unProducto) => {
         e.preventDefault();
@@ -22,12 +29,15 @@ const ListaStockCuerpo = () => {
 
     const confirmarBajaProducto = (productoBaja) => {
         // TODO Lógica para eliminar el producto del stock
+        console.log(`Producto ${productoBaja.nombre} (${productoBaja.id}) eliminado del stock.`);
+        cerrarConfirmacion();
     };
 
     const bajaProducto = (e, productoBaja) => {
         e.preventDefault();
 
-        // TODO Mostrar popup de confirmación antes de eliminar
+        setEsConfirmacionAbierta(true);
+        setUnProducto(productoBaja);
     };
 
     const acciones = [{nombre: 'mostrar', clase: 'mostrar', handler: mostrarProducto}, {nombre: 'baja', clase: 'baja', handler: bajaProducto}];
@@ -44,6 +54,7 @@ const ListaStockCuerpo = () => {
                 }
             </div>
             <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} producto={unProducto} cerrarDialogo={cerrarDialogo} esNuevo={false}></ProductoStockPopup>
+            <ConfirmacionBajaPopup esConfirmacionAbierta={esConfirmacionAbierta} producto={unProducto} cerrarConfirmacion={cerrarConfirmacion} confirmarBaja={confirmarBajaProducto}></ConfirmacionBajaPopup>
         </div>
     );
 }

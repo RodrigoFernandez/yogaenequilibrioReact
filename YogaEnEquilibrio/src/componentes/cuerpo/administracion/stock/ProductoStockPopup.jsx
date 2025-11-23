@@ -44,8 +44,9 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
     });
 
     const [productoEdicion, setProductoEdicion] = useState(producto || getDefaultProducto());
-    const [errorValidacion, setErrorValidacion] = useState([]);
-
+    const [errorValidacion, setErrorValidacion] = useState({});
+    const [titulo, setTitulo] = useState(producto ? `${producto.nombre} (${producto.id})` : 'Nuevo Producto');
+    
     const validarCampos = () => {
         let errores = {};
 
@@ -71,17 +72,21 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
     };
 
     const persistirProducto = () =>{
+        const metodo = productoEdicion.id ? "put" : "post";
+        const url = "https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos" + (productoEdicion.id ? `/${productoEdicion.id}` : "");
+
         // TODO ver si esto funciona correctamente
-        //fetch("https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos",
+        //fetch(url,
         fetch("https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productosPrueba",
             {
-                method: "post",
+                method: metodo,
                 body: JSON.stringify(productoEdicion),
                 headers: {
                     'Accept': 'application/json'
                 }
             }
         ).then(response => {
+            console.log(response);
             if (response.ok) {
                 toast.success("Producto guardado con éxito.");
                 limpiarYCerrarDialogo();
@@ -96,9 +101,10 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
     const guardarProducto = (e) => {
         e.preventDefault();
 
-        setErrorValidacion(validarCampos())
+        const rtaValidacion = validarCampos();
+        setErrorValidacion(rtaValidacion)
 
-        if(Object.keys(errorValidacion).length == 0) {
+        if(Object.keys(rtaValidacion).length == 0) {
             persistirProducto();
         }
     };
@@ -109,6 +115,7 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
         }
 
         setProductoEdicion(getDefaultProducto());
+        setErrorValidacion({})
         cerrarDialogo();
     };
 
@@ -123,33 +130,65 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
     return (
         <div className={style['modal-producto-contenido']}>
             <header className={style['modal-producto-header']}>
-                <h3>Nuevo Producto</h3>
+                <h3>{titulo}</h3>
             </header>
             <div className={style['modal-producto-body']}>
                 <form className={style['modal-producto-form']} onSubmit={guardarProducto} onReset={limpiarYCerrarDialogo}>
                     <div className={style['modal-producto-campos']} >
-                        <label htmlFor="nombre">Nombre:</label>
-                        <input type="text" name="nombre" value={productoEdicion.nombre} onChange={asignarCampo} required />
-                        {errorValidacion.nombre && <p className={style['modal-error']}>{errorValidacion.nombre}</p>}
-                        <label htmlFor="precio">Precio:</label>
-                        <input type="number" name="precio" step="0.01" required value={productoEdicion.precio} onChange={asignarCampo} />
-                        {errorValidacion.precio && <p className={style['modal-error']}>{errorValidacion.precio}</p>}
-                        <label htmlFor="esNovedad">Es novedad:</label>
-                        <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esNovedad" checked={productoEdicion.esNovedad} onChange={asignarCampo} />
+                        <div  className={style['modal-producto-fila-editor']}>
+                            <div className={style['modal-producto-campor-editor']}>
+                                <label  className={style['etiqueta-campo']} htmlFor="nombre">Nombre:</label>
+                                <input type="text" name="nombre" value={productoEdicion.nombre} onChange={asignarCampo} required />
+                            </div>
+                            <div>
+                                {errorValidacion.nombre && <p className={style['modal-error']}>{errorValidacion.nombre}</p>}
+                            </div>
                         </div>
-                        <label htmlFor="esDestacado">Es destacado:</label>
-                        <div className={style['modal-checkbox']}>
-                            <input type="checkbox" name="esDestacado" checked={productoEdicion.esDestacado} onChange={asignarCampo}/>
+                        <div className={style['modal-producto-fila-editor']}>
+                            <div className={style['modal-producto-campor-editor']}>
+                                <label className={style['etiqueta-campo']} htmlFor="precio">Precio:</label>
+                                <input type="number" name="precio" step="0.01" required value={productoEdicion.precio} onChange={asignarCampo} />
+                            </div>
+                            <div>
+                                {errorValidacion.precio && <p className={style['modal-error']}>{errorValidacion.precio}</p>}
+                            </div>
                         </div>
-                        <label htmlFor="imagen">Imagen URL:</label>
-                        <input type="url" name="imagen" required  value={productoEdicion.imagen} onChange={asignarCampo}/>
-                        {errorValidacion.imagen && <p className={style['modal-error']}>{errorValidacion.imagen}</p>}
-                        <div className={style['modal-descripcion-label']}>
-                            <label htmlFor="descripcion">Descripción:</label>
+                        <div className={style['modal-producto-fila-editor']}>
+                            <div className={style['modal-producto-campor-editor']}>
+                                <label className={style['etiqueta-campo']} htmlFor="esNovedad">Es novedad:</label>
+                                <div className={style['modal-checkbox']}>
+                                    <input type="checkbox" name="esNovedad" checked={productoEdicion.esNovedad} onChange={asignarCampo} />
+                                </div>
+                            </div>
                         </div>
-                        <textarea name="descripcion" rows={10} required  value={productoEdicion.descripcion} onChange={asignarCampo}></textarea>
-                        {errorValidacion.descripcion && <p className={style['modal-error']}>{errorValidacion.descripcion}</p>}
+                        <div  className={style['modal-producto-fila-editor']}>
+                            <div className={style['modal-producto-campor-editor']}>
+                                <label className={style['etiqueta-campo']} htmlFor="esDestacado">Es destacado:</label>
+                                <div className={style['modal-checkbox']}>
+                                    <input type="checkbox" name="esDestacado" checked={productoEdicion.esDestacado} onChange={asignarCampo}/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style['modal-producto-fila-editor']}>
+                            <div className={style['modal-producto-campor-editor']}>
+                                <label className={style['etiqueta-campo']} htmlFor="imagen">Imagen URL:</label>
+                                <input type="url" name="imagen" required  value={productoEdicion.imagen} onChange={asignarCampo}/>
+                            </div>
+                            <div>
+                            {errorValidacion.imagen && <p className={style['modal-error']}>{errorValidacion.imagen}</p>}
+                            </div>
+                        </div>
+                        <div className={style['modal-producto-fila-editor']}>
+                            <div className={style['modal-producto-campor-editor']}>
+                                <div className={style['modal-descripcion-label']}>
+                                    <label className={style['etiqueta-campo']} htmlFor="descripcion">Descripción:</label>
+                                </div>
+                                <textarea name="descripcion" rows={10} required  value={productoEdicion.descripcion} onChange={asignarCampo}></textarea>
+                            </div>
+                            <div>
+                                {errorValidacion.descripcion && <p className={style['modal-error']}>{errorValidacion.descripcion}</p>}
+                            </div>
+                        </div>
                     </div>
                     <div className={style['modal-botonera']}>
                         <button className="boton">Guardar</button>
