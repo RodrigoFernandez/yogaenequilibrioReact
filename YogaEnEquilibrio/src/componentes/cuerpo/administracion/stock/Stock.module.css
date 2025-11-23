@@ -118,15 +118,6 @@
     margin-right: 0.25em;
 }
 
-.lista-stock-pie {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  text-align: center;
-  background-color: var(--color-fondo-header-footer);
-}
-
 /* Estilos del ejemplo */
 
 /* ProductList.css */

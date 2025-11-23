@@ -1,0 +1,21 @@
+.lista-stock-pie {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: center;
+  background-color: var(--color-fondo-header-footer);
+}
+
+.navegador-pagina {
+  display: inline-block;
+}
+
+.boton-navegador {
+  background-color: var(--color-fondo-header-footer);
+}
+
+.boton-navegador-img {
+  width: 0.625em;
+  height: auto;
+}

@@ -86,11 +86,11 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
                 }
             }
         ).then(response => {
-            console.log(response);
             if (response.ok) {
                 toast.success("Producto guardado con éxito.");
                 limpiarYCerrarDialogo();
             } else {
+                console.error(response);
                 throw "Error al guardar el producto.";
             }
         }).catch(error => {

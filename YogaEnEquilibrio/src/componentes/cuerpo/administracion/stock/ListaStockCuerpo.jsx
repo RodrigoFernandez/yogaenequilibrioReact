@@ -4,9 +4,10 @@ import style from './Stock.module.css'
 import ProductoStock from './ProductoStock';
 import ProductoStockPopup from './ProductoStockPopup';
 import ConfirmacionBajaPopup from './ConfirmacionBajaPopup';
+import { ToastContainer } from 'react-toastify';
 
 const ListaStockCuerpo = () => {
-    const {stock} = useProductos();
+    const {stockPaginado} = useProductos();
     const [esDialogoAbierto, setEsDialogoAbierto] = useState(false);
     const [unProducto, setUnProducto] = useState(null);
     const [esConfirmacionAbierta, setEsConfirmacionAbierta] = useState(false);
@@ -28,9 +29,29 @@ const ListaStockCuerpo = () => {
     };
 
     const confirmarBajaProducto = (productoBaja) => {
-        // TODO Lógica para eliminar el producto del stock
-        console.log(`Producto ${productoBaja.nombre} (${productoBaja.id}) eliminado del stock.`);
-        cerrarConfirmacion();
+        const url = `https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos/${productoBaja.id}`;
+
+        // TODO ver si esto funciona correctamente
+        //fetch(url,
+        fetch("https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productosPrueba",
+            {
+                method: "delete",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }
+        ).then(response => {
+            
+            if (response.ok) {
+                toast.success("Producto dado de baja con éxito.");
+                cerrarConfirmacion();
+            } else {
+                console.error(response);
+                throw "Error al dar de baja el producto.";
+            }
+        }).catch(error => {
+            toast.error(error + " Aguarde un momento e intente nuevamente.");
+        });
     };
 
     const bajaProducto = (e, productoBaja) => {
@@ -45,8 +66,8 @@ const ListaStockCuerpo = () => {
     return (
         <div>
             <div className={style['lista-stock-cuerpo']}>
-                {stock.length > 0 ?
-                    (stock.map((producto) => (
+                {stockPaginado.length > 0 ?
+                    (stockPaginado.map((producto) => (
                             <ProductoStock key={producto.id} producto={producto} acciones={acciones}></ProductoStock>
                         ))
                     )
@@ -55,6 +76,7 @@ const ListaStockCuerpo = () => {
             </div>
             <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} producto={unProducto} cerrarDialogo={cerrarDialogo} esNuevo={false}></ProductoStockPopup>
             <ConfirmacionBajaPopup esConfirmacionAbierta={esConfirmacionAbierta} producto={unProducto} cerrarConfirmacion={cerrarConfirmacion} confirmarBaja={confirmarBajaProducto}></ConfirmacionBajaPopup>
+            <ToastContainer></ToastContainer>
         </div>
     );
 }
