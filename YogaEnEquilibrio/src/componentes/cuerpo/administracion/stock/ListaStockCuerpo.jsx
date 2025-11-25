@@ -4,10 +4,10 @@ import style from './Stock.module.css'
 import ProductoStock from './ProductoStock';
 import ProductoStockPopup from './ProductoStockPopup';
 import ConfirmacionBajaPopup from './ConfirmacionBajaPopup';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
 const ListaStockCuerpo = () => {
-    const {stockPaginado} = useProductos();
+    const {stockPaginado, actualizarProductos, setActualizarProductos} = useProductos();
     const [esDialogoAbierto, setEsDialogoAbierto] = useState(false);
     const [unProducto, setUnProducto] = useState(null);
     const [esConfirmacionAbierta, setEsConfirmacionAbierta] = useState(false);
@@ -31,13 +31,12 @@ const ListaStockCuerpo = () => {
     const confirmarBajaProducto = (productoBaja) => {
         const url = `https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos/${productoBaja.id}`;
 
-        // TODO ver si esto funciona correctamente
-        //fetch(url,
-        fetch("https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productosPrueba",
+        fetch(url,
             {
                 method: "delete",
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             }
         ).then(response => {
@@ -45,6 +44,7 @@ const ListaStockCuerpo = () => {
             if (response.ok) {
                 toast.success("Producto dado de baja con éxito.");
                 cerrarConfirmacion();
+                setActualizarProductos(actualizarProductos + 1);
             } else {
                 console.error(response);
                 throw "Error al dar de baja el producto.";
@@ -74,7 +74,7 @@ const ListaStockCuerpo = () => {
                     : ( <div>No hay productos disponibles.</div>)
                 }
             </div>
-            <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} producto={unProducto} cerrarDialogo={cerrarDialogo} esNuevo={false}></ProductoStockPopup>
+            <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} producto={unProducto} cerrarDialogo={cerrarDialogo} esNuevo={false} actualizarProductos={actualizarProductos} setActualizarProductos={setActualizarProductos}></ProductoStockPopup>
             <ConfirmacionBajaPopup esConfirmacionAbierta={esConfirmacionAbierta} producto={unProducto} cerrarConfirmacion={cerrarConfirmacion} confirmarBaja={confirmarBajaProducto}></ConfirmacionBajaPopup>
             <ToastContainer></ToastContainer>
         </div>

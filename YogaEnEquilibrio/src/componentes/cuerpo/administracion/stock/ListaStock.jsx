@@ -23,7 +23,7 @@ const ListaStock = () => {
     const buscarProductoPorCriterio = (e) => {
         e.preventDefault();
         // Lógica de búsqueda de productos
-        console.log('Buscar producto');
+        console.log('Buscar producto:' + criterioBusqueda);
         buscarProductos(criterioBusqueda);
     };
 

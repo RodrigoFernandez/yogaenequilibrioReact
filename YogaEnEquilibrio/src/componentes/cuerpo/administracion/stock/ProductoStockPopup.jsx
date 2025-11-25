@@ -33,7 +33,7 @@ const ExhibidorProducto = ({producto, cerrarDialogo, modificar}) => {
     );
 };
 
-const EditorProducto = ({ cerrarDialogo, producto }) => {
+const EditorProducto = ({ cerrarDialogo, producto, actualizarProductos, setActualizarProductos}) => {
     const getDefaultProducto = () => ({
         nombre: '',     
         precio: '',
@@ -74,21 +74,21 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
     const persistirProducto = () =>{
         const metodo = productoEdicion.id ? "put" : "post";
         const url = "https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos" + (productoEdicion.id ? `/${productoEdicion.id}` : "");
-
-        // TODO ver si esto funciona correctamente
-        //fetch(url,
-        fetch("https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productosPrueba",
+        
+        fetch(url,
             {
                 method: metodo,
                 body: JSON.stringify(productoEdicion),
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
                 }
             }
         ).then(response => {
             if (response.ok) {
                 toast.success("Producto guardado con éxito.");
                 limpiarYCerrarDialogo();
+                setActualizarProductos(actualizarProductos + 1);
             } else {
                 console.error(response);
                 throw "Error al guardar el producto.";
@@ -121,9 +121,19 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
 
     const asignarCampo = (e) => {
         const { name, value, type, checked } = e.target;
+        
+        let valor = value;
+        if (type === 'number') {
+            valor = value === '' ? '' : parseFloat(value);
+        }
+        
+        if (type === 'checkbox') {
+            valor = checked;
+        }
+
         setProductoEdicion({
             ...productoEdicion,
-            [name]: type === 'checkbox' ? checked : value
+            [name]: valor
         });
     };
 
@@ -201,7 +211,7 @@ const EditorProducto = ({ cerrarDialogo, producto }) => {
     );
 };
 
-const ProductoStockPopup = ({ producto, esDialogoAbierto, cerrarDialogo, esNuevo }) => {
+const ProductoStockPopup = ({ producto, esDialogoAbierto, cerrarDialogo, esNuevo, actualizarProductos, setActualizarProductos }) => {
     const [esModificacion, setEsModificacion] = useState(false);
     
     const modificarProducto = () => {
@@ -226,11 +236,11 @@ const ProductoStockPopup = ({ producto, esDialogoAbierto, cerrarDialogo, esNuevo
                 )}
 
                 { !esNuevo && producto && esModificacion && (
-                    <EditorProducto cerrarDialogo={cerrarDialogo} producto={producto}></EditorProducto>
+                    <EditorProducto cerrarDialogo={cerrarDialogo} producto={producto} actualizarProductos={actualizarProductos} setActualizarProductos={setActualizarProductos}></EditorProducto>
                 )}
 
                 { esNuevo && (
-                    <EditorProducto cerrarDialogo={cerrarDialogo} producto={producto}></EditorProducto>
+                    <EditorProducto cerrarDialogo={cerrarDialogo} producto={producto} actualizarProductos={actualizarProductos} setActualizarProductos={setActualizarProductos}></EditorProducto>
                 )}
             </div>
         </Portal>}

@@ -22,7 +22,7 @@ function App() {
   //const [productos, setProductos] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
-  const {setProductos} = useProductos()
+  const {setProductos, actualizarProductos} = useProductos()
 
   useEffect(() => {
     fetch('https://68d32750cc7017eec5461dcb.mockapi.io/api/v1/productos')
@@ -40,7 +40,7 @@ function App() {
         setError('Error al obtener los productos. Por favor, intente nuevamente más tarde.');
       })
       .finally( () => setCargando(false) );
-  }, []);
+  }, [actualizarProductos]);
 
   if (cargando) {
     return (
