@@ -7,7 +7,7 @@ import { useProductos } from '../../../../contextos/ProductosContext';
 import style from './Stock.module.css';
 
 const ListaStock = () => {
-    const {buscarProductos} = useProductos();
+    const {buscarProductos, actualizarProductos, setActualizarProductos} = useProductos();
     const [esDialogoAbierto, setEsDialogoAbierto] = useState(false);
     const [criterioBusqueda, setCriterioBusqueda] = useState('');
 
@@ -41,7 +41,7 @@ const ListaStock = () => {
                 <button className="boton" onClick={buscarProductoPorCriterio}>Buscar</button>
             </div>
             <button className="boton" onClick={altaProducto}>Agregar Producto</button>
-            <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} cerrarDialogo={cerrarDialogo} esNuevo={true}></ProductoStockPopup>
+            <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} cerrarDialogo={cerrarDialogo} esNuevo={true} actualizarProductos={actualizarProductos} setActualizarProductos={setActualizarProductos}></ProductoStockPopup>
         </div>
         <div className={style['lista-stock']}>
             <ListaStockCabecera></ListaStockCabecera>
