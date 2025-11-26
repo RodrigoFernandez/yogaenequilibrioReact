@@ -32,8 +32,21 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('usuario');
   };
 
+  const usuarioConRoles = (rolesAutorizados) => {
+    if(!rolesAutorizados || rolesAutorizados.length == 0){
+      return true;
+    }
+    
+    let rtas = [];
+    if(usuario){
+      rtas = usuario.roles.map(rolUsuario => rolesAutorizados.includes(rolUsuario));
+    }
+
+    return rtas.includes(true);
+  };
+
   return (
-    <AuthContext.Provider value={{ usuario, login, logout, token }}>
+    <AuthContext.Provider value={{ usuario, login, logout, token, usuarioConRoles }}>
       {children}
     </AuthContext.Provider>
   );

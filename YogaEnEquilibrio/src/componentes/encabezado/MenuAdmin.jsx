@@ -5,7 +5,7 @@ import { useAuth } from "../../contextos/AuthContext";
 
 export function MenuAdmin({usuario}){
     const [menuAbierto, setMenuAbierto] = useState(false);
-    const { logout } = useAuth();
+    const { logout, usuarioConRoles } = useAuth();
 
     const toggleMenu = () => {
         setMenuAbierto(!menuAbierto);
@@ -16,6 +16,15 @@ export function MenuAdmin({usuario}){
         logout();
     };
 
+    const opcionesDisponibles = [
+        {destino: '/stock', titulo: 'Stock', accion: toggleMenu, autorizados: ['admin']},
+        {destino: '/', titulo: 'Salir', accion: salir, autorizados: []}
+    ];
+
+    const opcionesDeMenu = opcionesDisponibles
+                                            .filter(opcion => usuarioConRoles(opcion.autorizados))
+                                            .map((opcion) => <li key={opcion.titulo}><Link to={opcion.destino} onClick={opcion.accion}>{opcion.titulo}</Link></li>);
+
     return (
         <div className={style.menuAdmin}>
             <button className={style.botonMenu} onClick={toggleMenu}>
@@ -23,8 +32,7 @@ export function MenuAdmin({usuario}){
             </button>
             {menuAbierto && (
                 <ul className={style.listaMenu}>
-                    <li><Link to='/stock' onClick={toggleMenu}>Stock</Link></li>
-                    <li><Link to='/' onClick={salir}>Salir</Link></li>
+                    {opcionesDeMenu}
                 </ul>
             )}
         </div>
