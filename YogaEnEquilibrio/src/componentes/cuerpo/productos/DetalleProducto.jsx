@@ -57,25 +57,30 @@ export const DetalleProducto = () => {
     }
 
     return (
-        <section className="producto-detalle">
-            <h3>{item.producto.nombre}</h3>
-            <div className="producto-detalle-cuerpo">
-                <div className="producto-detalle-info">
-                    <div className='izquierda'>
-                    <img src={item.producto.imagen} alt={item.producto.nombre} />
+        <>
+            <title>{`${item.producto.nombre} | Yoga en equilibrio`}</title>
+            <meta name="description" content={`${item.producto.nombre}. ${item.producto.descripcion}.`} />
+
+            <section className="producto-detalle">
+                <h3>{item.producto.nombre}</h3>
+                <div className="producto-detalle-cuerpo">
+                    <div className="producto-detalle-info">
+                        <div className='izquierda'>
+                        <img src={item.producto.imagen} alt={item.producto.nombre} />
+                        </div>
+                        <div className='derecha'>
+                        <p>{item.producto.descripcion}</p>
+                        </div>
                     </div>
-                    <div className='derecha'>
-                    <p>{item.producto.descripcion}</p>
-                    </div>
+                    <hr className='producto-detalle-division'/>
+                    <p>Precio: ${item.producto.precio}</p>
+                    <p>Cantidad: <input type="number" className="cantidad" value={item.cantidad} min="1" max="10" onChange={actualizarCantidad}></input></p>
+                    <p>Total: ${item.cantidad * item.producto.precio}</p>
                 </div>
-                <hr className='producto-detalle-division'/>
-                <p>Precio: ${item.producto.precio}</p>
-                <p>Cantidad: <input type="number" className="cantidad" value={item.cantidad} min="1" max="10" onChange={actualizarCantidad}></input></p>
-                <p>Total: ${item.cantidad * item.producto.precio}</p>
-            </div>
-            <div className="producto-detalle-botonera">
-                <button className="boton" onClick={agregarAlCarrito}>Agregar</button>
-                <button className="boton" onClick={volver}>Volver</button>
-            </div>
-        </section>);
+                <div className="producto-detalle-botonera">
+                    <button className="boton" onClick={agregarAlCarrito}>Agregar</button>
+                    <button className="boton" onClick={volver}>Volver</button>
+                </div>
+            </section>
+        </>);
 };

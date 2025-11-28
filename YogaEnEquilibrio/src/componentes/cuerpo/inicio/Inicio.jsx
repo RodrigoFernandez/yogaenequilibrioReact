@@ -15,6 +15,8 @@ export const Inicio = () => {
     
     return (
         <>
+            <meta name="description" content="Explora las últimas novedades y productos destacados de Yoga en equilibrio."></meta>
+            
             <SeccionInicio clase={style.novedades} titulo="Novedades" claseExibidor={style['productos-novedades']} claseItem={style['novedades-box']} claseEnlace={style['enlace-producto']} productos={novedades}></SeccionInicio>
             <SeccionInicio clase={style.destacados} titulo="Destacados" claseExibidor={style['productos-destacados']} claseItem={style['destacados-box']} claseEnlace={style['enlace-producto']} productos={destacados}></SeccionInicio>
         </>
