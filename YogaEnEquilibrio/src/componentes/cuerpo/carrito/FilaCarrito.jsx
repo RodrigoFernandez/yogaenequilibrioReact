@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useCarrito } from "../../../contextos/CarritoContext";
 
 export const FilaCarrito = ({item}) => {
-    //const { carrito, agregarItemAlCarrito, eliminarItemDelCarrito, vaciarCarrito } = useCarrito();
     const { agregarItemAlCarrito, eliminarItemDelCarrito } = useCarrito();
     const [itemFila, setItemFila] = useState(item);
 
