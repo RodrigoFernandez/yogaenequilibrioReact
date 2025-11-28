@@ -66,6 +66,13 @@ header {
     pointer-events: none;
 }
 
+.aviso-login-finalizacion {
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    color: var(--color-texto-error);
+}
+
 dialog {
     border: 7px solid var(--color-fondo-header-footer);
     border-radius: 10px;

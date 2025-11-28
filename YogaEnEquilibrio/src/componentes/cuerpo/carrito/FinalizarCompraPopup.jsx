@@ -29,7 +29,13 @@ const TablaItemsCompra = ({carrito, getTotalCarrito}) => {
     );
 };
 
-const ListadoFinalizarCompra = ({cerrarDialogo, carrito, getTotalCarrito}) => {
+const ListadoFinalizarCompra = ({cerrarDialogo, carrito, getTotalCarrito, finalizarCompra}) => {
+    
+    const accionFinalizarCompra = (e) => {
+        finalizarCompra();
+        cerrarDialogo();
+    };
+
     return (
         <div className={style['modal-finalizar-compra-contenido']}>
             <header className={style['modal-finalizar-compra-header']}>
@@ -41,14 +47,14 @@ const ListadoFinalizarCompra = ({cerrarDialogo, carrito, getTotalCarrito}) => {
             </div>
                     
             <div className={style['modal-botonera']}>
-                <button className="boton" >Confirmar compra</button>
+                <button className="boton" onClick={accionFinalizarCompra}>Confirmar compra</button>
                 <button className="boton" onClick={cerrarDialogo}>Cancelar</button>
             </div>
         </div>
     );
 }
 
-const FinalizarCompraPopup = ({esDialogoAbierto, cerrarDialogo}) => { 
+const FinalizarCompraPopup = ({esDialogoAbierto, cerrarDialogo, finalizarCompra}) => { 
     const { carrito, getTotalCarrito } = useCarrito();
 
     return (
@@ -57,7 +63,7 @@ const FinalizarCompraPopup = ({esDialogoAbierto, cerrarDialogo}) => {
             <Portal>
                 <div className={style['modal-overlay']}></div>
                 <div className={style['modal-finalizar-compra']} open={esDialogoAbierto} aria-modal="true">
-                    <ListadoFinalizarCompra cerrarDialogo={cerrarDialogo} carrito={carrito} getTotalCarrito={getTotalCarrito}></ListadoFinalizarCompra>
+                    <ListadoFinalizarCompra cerrarDialogo={cerrarDialogo} carrito={carrito} getTotalCarrito={getTotalCarrito} finalizarCompra={finalizarCompra}></ListadoFinalizarCompra>
                 </div>
             </Portal>}
         </>

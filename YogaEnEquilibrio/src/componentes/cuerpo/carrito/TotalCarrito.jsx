@@ -1,14 +1,16 @@
 import {useState} from 'react';
 import { useCarrito } from "../../../contextos/CarritoContext";
+import { useAuth } from '../../../contextos/AuthContext';
 import FinalizarCompraPopup from "./FinalizarCompraPopup";
+import { ToastContainer, toast } from 'react-toastify';
 
 export const TotalCarrito = () => {
-    const { carrito, getTotalCarrito } = useCarrito();
+    const { carrito, getTotalCarrito, finalizarCompra } = useCarrito();
+    const { usuario } = useAuth();
     const [esFinalizarPopupAbierto, setEsFinalizarPopupAbierto] = useState(false);
     
-    const finalizarCompra = (e) => {
-        // Lógica para finalizar la compra
-        console.log("Acá debería salir el formulario para terminar la compra.");
+    
+    const mostrarPopupFinalizarCompra = (e) => {
         setEsFinalizarPopupAbierto(true);
     };
 
@@ -17,7 +19,21 @@ export const TotalCarrito = () => {
     };
 
     const getEstiloBoton = () => {
-        return getTotalCarrito() === 0 ? "boton boton-deshabilitado" : "boton";
+        return desactivarFinalizarCompra() ? "boton boton-deshabilitado" : "boton";
+    }
+
+    const finalizarCompraCarrito = () =>{
+        finalizarCompra();
+        toast.success("Gracias por su compra. Recibirá un mail con el detalle de la compra.");
+    };
+
+    const desactivarFinalizarCompra = () => {
+        return  getTotalCarrito() === 0
+                || usuario == null;
+    };
+
+    const mostrarMensajeLoginObligatorio = () => {
+        return usuario == null;
     }
 
     return (
@@ -30,8 +46,10 @@ export const TotalCarrito = () => {
                     <p>${getTotalCarrito()}</p>
                 </div>
             </div>
-            <button type="button" className={getEstiloBoton()} id="finalizarCompraBtn" disabled={getTotalCarrito() === 0} onClick={finalizarCompra} >Finalizar compra</button>
-            <FinalizarCompraPopup esDialogoAbierto={esFinalizarPopupAbierto} cerrarDialogo={cerrarDialogo}></FinalizarCompraPopup>
+            <button type="button" className={getEstiloBoton()} id="finalizarCompraBtn" disabled={desactivarFinalizarCompra()} onClick={mostrarPopupFinalizarCompra} >Finalizar compra</button>
+            <FinalizarCompraPopup esDialogoAbierto={esFinalizarPopupAbierto} cerrarDialogo={cerrarDialogo} finalizarCompra={finalizarCompraCarrito}></FinalizarCompraPopup>
+            {mostrarMensajeLoginObligatorio() && <div className="aviso-login-finalizacion">Debe ingresar a la aplicación para finalizar la compra</div>}
+            <ToastContainer></ToastContainer>
         </div>
     )
 };
