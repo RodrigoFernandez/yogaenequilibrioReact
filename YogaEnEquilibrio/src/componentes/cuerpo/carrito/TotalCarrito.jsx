@@ -3,6 +3,7 @@ import { useCarrito } from "../../../contextos/CarritoContext";
 import { useAuth } from '../../../contextos/AuthContext';
 import FinalizarCompraPopup from "./FinalizarCompraPopup";
 import { ToastContainer, toast } from 'react-toastify';
+import style from './TotalCarrito.module.css';
 
 export const TotalCarrito = () => {
     const { carrito, getTotalCarrito, finalizarCompra } = useCarrito();
@@ -37,12 +38,12 @@ export const TotalCarrito = () => {
     }
 
     return (
-        <div className="total-carrito">
-            <div className="cuerpo-total-carrito">
-                <div className="cuerpo-card">
+        <div className={style['total-carrito']}>
+            <div className={style['cuerpo-total-carrito']}>
+                <div className={style['cuerpo-card']}>
                     <p>Total:</p>
                 </div>
-                <div className="precio-card" id="precioTotal">
+                <div className={style['precio-card']} id="precioTotal">
                     <p>${getTotalCarrito()}</p>
                 </div>
             </div>

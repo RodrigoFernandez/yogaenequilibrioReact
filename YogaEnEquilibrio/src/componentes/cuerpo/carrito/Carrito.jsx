@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import '../../../styles/carrito.css';
 import { ProductosEnCarrito } from './ProductosEnCarrito';
 import { TotalCarrito } from "./TotalCarrito";
 import { useCarrito } from '../../../contextos/CarritoContext';
+import style from './Carrito.module.css';
 
 export function Carrito() {
     const { carrito } = useCarrito();
@@ -17,7 +17,7 @@ export function Carrito() {
     }, [carrito]);
 
     return (
-        <section className="carrito">
+        <section className={style.carrito}>
             <h2>Carrito</h2>
             <ProductosEnCarrito></ProductosEnCarrito>
             <TotalCarrito totalCarrito={totalCarrito}></TotalCarrito>            

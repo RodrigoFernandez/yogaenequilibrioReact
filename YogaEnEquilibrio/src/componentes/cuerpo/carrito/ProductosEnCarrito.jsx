@@ -1,4 +1,4 @@
-import '../../../styles/carrito.css';
+import style from './ProductosEnCarrito.module.css';
 import { FilaCarrito } from "./FilaCarrito";
 import { useCarrito } from '../../../contextos/CarritoContext';
 
@@ -14,8 +14,8 @@ export const ProductosEnCarrito = () => {
     }
 
     return (
-        <div className="productos-carrito">
-            <table className="productos-carrito-table">
+        <div className={style['productos-carrito']}>
+            <table className={style['productos-carrito-table']}>
                 <tbody id="itemsCarrito">
                     {filasCarrito}
                 </tbody>

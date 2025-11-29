@@ -21,8 +21,8 @@ const TablaItemsCompra = ({carrito, getTotalCarrito}) => {
             </tbody>
             <tfoot>
                 <tr>
-                    <td className={style['resaltado']} colSpan={3}>Total:</td>
-                    <td className={`${style.resaltado} ${style['total-producto']}`}>$ {getTotalCarrito()}</td>
+                    <td className={style['resaltado']} >Total:</td>
+                    <td className={`${style.resaltado} ${style['total-producto']}`} colSpan={3}>$ {getTotalCarrito()}</td>
                 </tr>
             </tfoot>
         </table>

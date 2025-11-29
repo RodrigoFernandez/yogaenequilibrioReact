@@ -84,3 +84,9 @@
     font-weight: bold;
 }
 
+@media (max-width: 30em) {
+    .tabla-items-compra {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+}
