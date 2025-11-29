@@ -65,7 +65,7 @@
 
 @media (max-width: 48em) {
     .encabezado-cabecera {
-        grid-template-columns: 2fr;
+        grid-template-columns: auto 2fr auto;
         text-align: center;
     }
 
@@ -111,5 +111,14 @@
         width: 100px;
         height: auto;
         margin: 0.1em;
+    }
+
+    .login {
+        display: flex;
+        justify-self: end;
+        height: 100%;
+        width: 100%;
+        flex-direction: row-reverse;
+        margin-top: 0.5em;
     }
 }

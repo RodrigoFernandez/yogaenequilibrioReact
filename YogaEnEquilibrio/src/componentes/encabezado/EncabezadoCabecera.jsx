@@ -37,7 +37,7 @@ export function EncabezadoCabecera(){
     return (
         <div> 
             <div className={style['encabezado-cabecera']}>
-                <LogoEncabezado linkHome="/" logo="img/logo.svg"></LogoEncabezado>
+                <LogoEncabezado linkHome="/" logo="/img/logo.svg"></LogoEncabezado>
                 <TituloEncabezado titulo="Yoga en equilibrio">
                     Conectá cuerpo y mente con productos pensados para vos
                 </TituloEncabezado>
