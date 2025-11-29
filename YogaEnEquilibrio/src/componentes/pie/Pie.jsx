@@ -7,7 +7,7 @@ export function Pie(){
         <div className={style['footer-redes']}>
             {
                 redes.map((rs) => (
-                    <LinkRRSSFooter key={rs.red} link={rs.link} imagen={rs.imagen} alter={rs.red}></LinkRRSSFooter>
+                    <LinkRRSSFooter key={rs.red} link={rs.link} imagen={`/${rs.imagen}`} alter={rs.red}></LinkRRSSFooter>
                 ))
             }            
         </div>

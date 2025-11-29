@@ -2,7 +2,7 @@ import { use, useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Cargando } from '../../Cargando.jsx'
 import { Error } from '../../Error.jsx'
-import '../../../styles/productos.css'
+import style from './DetalleProducto.module.css'
 import { useCarrito } from '../../../contextos/CarritoContext.jsx';
 
 export const DetalleProducto = () => {
@@ -61,23 +61,23 @@ export const DetalleProducto = () => {
             <title>{`${item.producto.nombre} | Yoga en equilibrio`}</title>
             <meta name="description" content={`${item.producto.nombre}. ${item.producto.descripcion}.`} />
 
-            <section className="producto-detalle">
+            <section className={style['producto-detalle']}>
                 <h3>{item.producto.nombre}</h3>
-                <div className="producto-detalle-cuerpo">
-                    <div className="producto-detalle-info">
-                        <div className='izquierda'>
+                <div className={style['producto-detalle-cuerpo']}>
+                    <div className={style['producto-detalle-info']}>
+                        <div className={style['izquierda']}>
                         <img src={item.producto.imagen} alt={item.producto.nombre} />
                         </div>
-                        <div className='derecha'>
+                        <div className={style['derecha']}>
                         <p>{item.producto.descripcion}</p>
                         </div>
                     </div>
-                    <hr className='producto-detalle-division'/>
+                    <hr className={style['producto-detalle-division']}/>
                     <p>Precio: ${item.producto.precio}</p>
-                    <p>Cantidad: <input type="number" className="cantidad" value={item.cantidad} min="1" max="10" onChange={actualizarCantidad}></input></p>
+                    <p>Cantidad: <input type="number" className={style['cantidad']} value={item.cantidad} min="1" max="10" onChange={actualizarCantidad}></input></p>
                     <p>Total: ${item.cantidad * item.producto.precio}</p>
                 </div>
-                <div className="producto-detalle-botonera">
+                <div className={style['producto-detalle-botonera']}>
                     <button className="boton" onClick={agregarAlCarrito}>Agregar</button>
                     <button className="boton" onClick={volver}>Volver</button>
                 </div>
