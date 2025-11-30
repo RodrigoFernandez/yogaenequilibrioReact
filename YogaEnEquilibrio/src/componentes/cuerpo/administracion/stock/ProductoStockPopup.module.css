@@ -159,3 +159,15 @@
 .modal-botonera {
     margin-top: 0.5em;
 }
+
+
+@media (max-width: 48em) {
+
+}
+
+@media (max-width: 30em) {
+    .modal-producto-campos-exhibidor {
+        grid-template-columns: 1fr;
+        gap: 0.5em;
+    }
+}

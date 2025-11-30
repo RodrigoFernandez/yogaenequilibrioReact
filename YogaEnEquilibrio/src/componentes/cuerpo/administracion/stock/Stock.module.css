@@ -21,6 +21,21 @@
   flex-grow: 0.5;
 }
 
+.barra-busqueda-stock-boton-leyenda-larga {
+
+}
+.barra-busqueda-stock-boton-leyenda-corta {
+  display: none;  
+}
+
+.barra-busqueda-buscar-leyenda {
+
+}
+
+.barra-busqueda-buscar-icono {
+  display: none;  
+}
+
 .lista-stock {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -111,99 +126,65 @@
     display: inline-block;
     width: 1em;
     height: 1em;
-    background-image: url('img/lupa.svg');
+    background-image: url('img/ojo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
     margin-right: 0.25em;
 }
 
-/* Estilos del ejemplo */
+@media (max-width: 48em) {
 
-/* ProductList.css */
-/* --- 1. Estilos Base para Escritorio (Desktop First) --- */
+  .stock {
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 1em;
+  }
 
-.table-header,
-.table-row {
-  display: grid;
-  /* Define las 7 columnas con un ancho relativo */
-  grid-template-columns: 0.5fr 2fr 3fr 1fr 1fr 1fr 1fr; 
-  gap: 10px; /* Espacio entre columnas */
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
-  align-items: center;
-}
-
-.table-header {
-  font-weight: bold;
-  background-color: #f2f2f2;
-}
-
-.table-cell, .header-cell {
-  padding: 8px;
-  /* Ocultamos los labels de móvil en desktop */
-  text-align: left;
-}
-
-/* Ocultar elementos específicos en escritorio (solo se usa en móvil) */
-.table-cell::before {
-  content: none; 
-}
-.mobile-only {
+  .lista-stock-cabecera-titulo-imagen,
+  .producto-stock-imagen {
     display: none;
+  }
+
+  .lista-stock-cabecera, .producto-stock {
+    grid-template-columns: 0.5fr 2fr 2fr 1fr 1fr 1fr 1fr;
+  }
 }
-.desktop-only {
+
+@media (max-width: 30em) {
+  .stock {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-top: 0.5em;
+  }
+
+  .barra-busqueda-stock-boton-leyenda-larga {
+    display: none;
+  }
+  .barra-busqueda-stock-boton-leyenda-corta {
     display: block;
-}
-
-
-/* --- 2. Media Query para Móviles (< 768px) --- */
-
-@media (max-width: 768px) {
-  
-  /* Ocultamos el encabezado de la tabla */
-  .table-header {
-    display: none;
   }
-  
-  /* Mostramos elementos solo en móvil */
-  .desktop-only {
+
+  .barra-busqueda-buscar-leyenda {
     display: none;
   }
 
-  /* La fila se convierte en una tarjeta de una sola columna (Flexbox o Grid) */
-  .table-row {
-    display: block; /* Volvemos a comportamiento de caja normal */
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 5px;
-  }
-  
-  /* Cada celda se vuelve un bloque (apilándose) */
-  .table-cell {
-    display: flex; /* Usamos flexbox para alinear label y valor */
-    justify-content: space-between;
-    padding: 5px 0;
-    border: none;
+  .barra-busqueda-buscar-icono {
+    display: block;
   }
 
-  /* Mostramos el label (nombre del campo) antes del valor */
-  .table-cell::before {
-    content: attr(data-label) ": "; /* Muestra el texto del atributo data-label */
-    font-weight: bold;
-    color: #555;
-    flex-shrink: 0; /* Evita que el label se encoja */
-    margin-right: 10px;
+  .lista-stock-cabecera-titulo-imagen,
+  .producto-stock-imagen,
+  .lista-stock-cabecera-titulo-descripcion,
+  .producto-stock-descripcion,
+  .producto-stock-novedad,
+  .lista-stock-cabecera-titulo-novedad,
+  .producto-stock-destacado,
+  .lista-stock-cabecera-titulo-destacado {
+    display: none;
   }
-  
-  /* Formato especial para la botonera */
-  .actions-cell {
-    display: flex;
-    flex-direction: column; /* Apilamos los botones verticalmente */
-    gap: 10px;
-    padding-top: 15px;
-    border-top: 1px dashed #eee;
-    margin-top: 10px;
+
+  .lista-stock-cabecera, .producto-stock {
+    grid-template-columns: 0.5fr 2fr 1fr 1fr;
   }
 }

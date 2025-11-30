@@ -38,9 +38,9 @@ const ListaStock = () => {
         <div className={style['barra-herramientas-stock']}>
             <div className={style['barra-busqueda-stock']}>
                 <input type="text" placeholder="Buscar producto..." value={criterioBusqueda} onChange={(e) => setCriterioBusqueda(e.target.value)} onKeyDown={verificarTeclasPresionadas}/>
-                <button className="boton" onClick={buscarProductoPorCriterio}>Buscar</button>
+                <button className="boton" onClick={buscarProductoPorCriterio}><span className={style['barra-busqueda-buscar-leyenda']}>Buscar</span><span><img src="img/lupa.svg" alt="Buscar" className={style['barra-busqueda-buscar-icono']} /></span></button>
             </div>
-            <button className="boton" onClick={altaProducto}>Agregar Producto</button>
+            <button className="boton" onClick={altaProducto}><span className={style['barra-busqueda-stock-boton-leyenda-larga']}>Agregar Producto</span><span className={style['barra-busqueda-stock-boton-leyenda-corta']}>+</span></button>
             <ProductoStockPopup esDialogoAbierto={esDialogoAbierto} cerrarDialogo={cerrarDialogo} esNuevo={true} actualizarProductos={actualizarProductos} setActualizarProductos={setActualizarProductos}></ProductoStockPopup>
         </div>
         <div className={style['lista-stock']}>

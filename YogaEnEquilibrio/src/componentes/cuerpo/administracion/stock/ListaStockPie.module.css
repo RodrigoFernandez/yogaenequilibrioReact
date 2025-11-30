@@ -19,3 +19,13 @@
   width: 0.625em;
   height: auto;
 }
+
+@media (max-width: 48em) {
+  
+}
+
+@media (max-width: 30em) {
+  .boton-navegador-nro-pag {
+    display: none;
+  }
+}
