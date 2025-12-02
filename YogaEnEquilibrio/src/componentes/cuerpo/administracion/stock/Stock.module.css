@@ -104,7 +104,7 @@
     display: inline-block;
     width: 1em;
     height: 1em;
-    background-image: url('img/lapiz.svg');
+    background-image: url('/img/lapiz.svg');
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -115,7 +115,7 @@
     display: inline-block;
     width: 1em;
     height: 1em;
-    background-image: url('img/tacho.svg');
+    background-image: url('/img/tacho.svg');
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -126,7 +126,7 @@
     display: inline-block;
     width: 1em;
     height: 1em;
-    background-image: url('img/ojo.svg');
+    background-image: url('/img/ojo.svg');
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
