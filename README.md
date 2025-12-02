@@ -7,6 +7,8 @@
 
 Proyecto de desarrollo de una página web para vender productos relacionados con yoga, usando React.
 
+Su dirección es: https://yogaenequilibrio-react.vercel.app/
+
 Esta página se realizó en base a la página desarrollada para el curso de HTML, CSS y Javascript (<https://github.com/RodrigoFernandez/yogaenequilibrio>).
 
 El sitio consta de las siguientes secciones:
@@ -16,6 +18,8 @@ El sitio consta de las siguientes secciones:
 * Carrito de compras
 * Sobre yoga en equilibrio
 * Contacto
+
+Una vez dentro de la aplicación, si el usuario tiene permisos de administrador, en el menú desplegable sale el opción Stock, que permite la administración de los productos usados en la aplicación.
 
 ## Construido usando
 
