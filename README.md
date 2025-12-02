@@ -55,4 +55,12 @@ La url para acceder a los productos es: https://68d32750cc7017eec5461dcb.mockapi
 
 ## API para la autenticación de usuarios
 
-Para la autenticación de usuarios se usa Postman Mock Servers
+Para la autenticación de usuarios se armó un proyecto que simula la validación de crendenciales.
+
+Los usuarios disponibles son:
+
+| Usuario | Contraseña | roles |
+|---|---|---|
+| admin | adminpass | admin, user |
+| user1 | pass1 | user |
+| user2 | pass2 | user |
