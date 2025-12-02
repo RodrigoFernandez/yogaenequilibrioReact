@@ -171,6 +171,7 @@
 
   .barra-busqueda-buscar-icono {
     display: block;
+    width: 0.9em;
   }
 
   .lista-stock-cabecera-titulo-imagen,
